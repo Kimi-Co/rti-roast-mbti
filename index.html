@@ -527,7 +527,7 @@
         </div>
 
         <div style="display:flex;align-items:center;gap:16px;margin-top:10px;color:var(--muted);font-size:13px;line-height:1.6;" id="introCredits">
-          <span>Inspired by SBTI test by B站@蛆肉儿串儿 &middot; Art: AI-generated satirical portraits &middot; Built with love, bile, and zero dependencies</span>
+          <span>Art: AI-generated satirical portraits &middot; Built with love, bile, and zero dependencies</span>
         </div>
 
         <div class="hero-actions">
@@ -636,7 +636,7 @@
           'The app is equal-opportunity disrespect. Nobody escapes looking dignified.'
         ],
         startBtn: 'Destroy My Self-Esteem',
-        credits: 'Inspired by SBTI test by B站@蛆肉儿串儿 · Art: AI-generated satirical portraits · Built with love, bile, and zero dependencies',
+        credits: 'Art: AI-generated satirical portraits · Built with love, bile, and zero dependencies',
         backBtn: 'Back to Home',
         submitBtn: 'Judge Me',
         restartBtn: 'Get Roasted Again',
@@ -675,7 +675,7 @@
           '本测试一视同仁地嘴所有人。谁都别想体面下桌。'
         ],
         startBtn: '开始自我毁灭',
-        credits: '灵感来源:SBTI 测试 by B站@蛆肉儿串儿 · 插图:AI 生成讽刺肖像 · 用爱、怨气和零依赖硬搓',
+        credits: '插图:AI 生成讽刺肖像 · 用爱、怨气和零依赖硬搓',
         backBtn: '回到首页',
         submitBtn: '来吧损我',
         restartBtn: '我还能承受',
@@ -761,7 +761,7 @@ Some lines are intentionally mean, exaggerated, stereotyped, and committed to th
 Every type gets flamed equally. Nobody is being singled out. Nobody is getting saved either.
 If a result reads you with suspicious accuracy, take that up with your life choices.
 Do not use this for hiring, dating, diagnosis, legal decisions, spiritual awakening, or any other serious purpose.
-Original inspiration: the SBTI test by B站@蛆肉儿串儿`;
+Art: AI-generated satirical portraits.`;
 
     const DISCLAIMER_ZH = `⚠️ 友情提醒
 这就是个嘴臭整活测试,不是心理学,不是治疗,更不是人生指南。
@@ -769,7 +769,7 @@ Original inspiration: the SBTI test by B站@蛆肉儿串儿`;
 所有类型都会被一视同仁地损一遍,没人被特殊关照,也没人能全身而退。
 要是某条结果准到让你沉默,建议先反思人生,别先反思我们。
 严禁拿它去招聘、相亲、看病、算命、打官司,以及任何正经场合。
-灵感来源:SBTI 测试 by B站@蛆肉儿串儿`;
+插图:AI 生成讽刺肖像。`;
 
     function getDisclaimer() { return currentLang === 'zh' ? DISCLAIMER_ZH : DISCLAIMER_EN; }
 
@@ -1668,16 +1668,7 @@ Still, history belongs to a few weird specimens the categories could not hold. C
       document.getElementById('resultTypeName').textContent = type.keyword ? (currentLang === 'zh' && type.keyword_zh ? type.keyword_zh : type.keyword) : type.code;
       document.getElementById('resultTypeSub').textContent = `${type.code} · ${rName}`;
       document.getElementById('matchBadge').textContent = badgeStr;
-      // Remove previous confidence note if exists
-      const oldConfNote = document.getElementById('confExplain');
-      if (oldConfNote) oldConfNote.remove();
-      // Add confidence explanation when low (scheme C)
-      if (!result.special && result.overallConfidence < 50) {
-        const confExplainText = currentLang === 'zh'
-          ? '低置信度 ≠ 结果不准。三选一量表天然偏中间，大多数人得分都集中在 30-50% 区间，这很正常。'
-          : 'Low confidence ≠ wrong result. Three-choice scales naturally cluster near the middle. Most people land in the 30-50% range, and that is completely normal.';
-        document.getElementById('matchBadge').insertAdjacentHTML('afterend', `<div id="confExplain" style="margin-top:8px;color:var(--muted);font-size:12px;line-height:1.7;font-style:italic;">${confExplainText}</div>`);
-      }
+      // confidence explanation removed from here — moved to disclaimer area below
       // Remove previous tagline div if exists, then add fresh one
       const oldTagline = document.getElementById('resultTagline');
       if (oldTagline) oldTagline.remove();
@@ -1689,7 +1680,15 @@ Still, history belongs to a few weird specimens the categories could not hold. C
         ? t('specialNote')
         : t('normalNote');
 
-      document.getElementById('fullDisclaimer').textContent = getDisclaimer();
+      // Confidence explanation (scheme C) appended to disclaimer area
+      let disclaimerText = getDisclaimer();
+      if (!result.special && result.overallConfidence < 50) {
+        const confNote = currentLang === 'zh'
+          ? '\n\n📊 关于置信度：低置信度 ≠ 结果不准。三选一量表天然偏中间，大多数人得分集中在 30-50% 区间，这很正常。'
+          : '\n\n📊 About confidence: Low confidence ≠ wrong result. Three-choice scales naturally cluster near the middle. Most people land in the 30-50% range, and that is completely normal.';
+        disclaimerText += confNote;
+      }
+      document.getElementById('fullDisclaimer').textContent = disclaimerText;
 
       renderPoster(type);
       renderDimList(result);
