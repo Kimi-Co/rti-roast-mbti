@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MBTI is a scam. This is worse.</title>
+  <title>RTI - MBTI is a scam. This is worse.</title>
   <style>
     :root {
       --bg: #f4f8f3;
@@ -173,11 +173,17 @@
     }
 
     .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: var(--panel);
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      margin-bottom: 18px;
+      margin: -22px -22px 18px -22px;
+      padding: 14px 22px;
+      border-bottom: 1px solid var(--line);
       flex-wrap: wrap;
     }
 
@@ -480,6 +486,10 @@
       .hero h1 { font-size: 34px; }
       .question-title { font-size: 15px; }
       .poster-box { min-height: 240px; }
+      .topbar {
+        margin: -16px -16px 14px -16px;
+        padding: 12px 16px;
+      }
     }
   </style>
 </head>
@@ -489,30 +499,35 @@
     <button class="lang-btn" data-lang="zh" onclick="setLang('zh')" style="padding:6px 12px;border:none;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;background:transparent;color:#4f6954;">中文</button>
   </div>
   <div class="shell">
+
     <section id="intro" class="screen active">
       <div class="hero card">
-        <div class="eyebrow">Parody assessment, zero credentials, maximum audacity</div>
-        <h1>MBTI is a scam. This is worse.</h1>
-        <p class="sub">The personality test that roasts you with clinical precision and zero qualifications. Thirty-two questions, one hidden trap, four fake science axes, and a result you will absolutely screenshot and send to someone who should not be this amused by your downfall.</p>
+        <div class="eyebrow" id="introEyebrow">Parody assessment, zero credentials, maximum audacity</div>
+        <h1 id="introTitle">MBTI is a scam.<br>This is worse.</h1>
+        <p class="sub" id="introSub">The personality test that roasts you with clinical precision and zero qualifications. Thirty-two questions, one hidden trap, four fake science axes, and a result you will absolutely screenshot and send to someone who should not be this amused by your downfall.</p>
 
         <div class="hero-grid">
           <div class="mini-panel">
-            <h3>What this monstrosity does</h3>
-            <ul>
+            <h3 id="introWhatTitle">What this monstrosity does</h3>
+            <ul id="introWhatList">
               <li>Uses real 4-axis MBTI scoring, because we respect nonsense with structure.</li>
-              <li>Randomizes question order so you can’t min-max your emotional damage.</li>
+              <li>Randomizes question order so you can't min-max your emotional damage.</li>
               <li>Includes a hidden LOWB outcome for users brave enough to self-report catastrophic taste.</li>
               <li>Includes a GLITCH fallback for those who answer like a haunted CAPTCHA.</li>
             </ul>
           </div>
           <div class="mini-panel">
-            <h3>Before you begin</h3>
-            <ul>
+            <h3 id="introBeforeTitle">Before you begin</h3>
+            <ul id="introBeforeList">
               <li>This is satire, not therapy.</li>
               <li>If a result feels too accurate, that is between you and whatever deity abandoned quality control.</li>
               <li>The app is equal-opportunity disrespect. Nobody escapes looking dignified.</li>
             </ul>
           </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:16px;margin-top:10px;color:var(--muted);font-size:13px;line-height:1.6;" id="introCredits">
+          <span>Inspired by SBTI test by B站@蛆肉儿串儿 &middot; Art: AI-generated satirical portraits &middot; Built with love, bile, and zero dependencies</span>
         </div>
 
         <div class="hero-actions">
@@ -533,7 +548,7 @@
         <div class="actions-bottom">
           <div class="hint" id="testHint">Answer everything. If society has to tolerate your personality, you can tolerate 33 clicks.</div>
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <button id="backIntroBtn" class="btn-secondary">Back to Denial</button>
+            <button id="backIntroBtn" class="btn-secondary">Back to Home</button>
             <button id="submitBtn" class="btn-primary" disabled>Judge Me</button>
           </div>
         </div>
@@ -577,7 +592,21 @@
         <div class="result-actions">
           <div style="display:flex; gap:12px; flex-wrap:wrap;">
             <button id="restartBtn" class="btn-secondary">Get Roasted Again</button>
-            <button id="toTopBtn" class="btn-primary">Back to Denial</button>
+            <button id="toTopBtn" class="btn-primary">Back to Home</button>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;">
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToTwitter()">X / Twitter</button>
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToFacebook()">Facebook</button>
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToReddit()">Reddit</button>
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToTelegram()">Telegram</button>
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToWhatsapp()">WhatsApp</button>
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToLinkedin()">LinkedIn</button>
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToTiktok()">TikTok</button>
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToWeibo()">Weibo</button>
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToWechat()">WeChat</button>
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToLine()">LINE</button>
+            <button class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="shareToThreads()">Threads</button>
+            <button id="shareCopy" class="btn-secondary" style="font-size:13px;padding:10px 14px;" onclick="copyShareText()">📋 Copy</button>
           </div>
         </div>
       </div>
@@ -590,7 +619,7 @@
     const UI = {
       en: {
         title: 'MBTI is a scam. This is worse.',
-        pageTitle: 'MBTI is a scam. This is worse.',
+        pageTitle: 'RTI - MBTI is a scam. This is worse.',
         eyebrow: 'Parody assessment, zero credentials, maximum audacity',
         subtitle: 'The personality test that roasts you with clinical precision and zero qualifications. Thirty-two questions, one hidden trap, four fake science axes, and a result you will absolutely screenshot and send to someone who should not be this amused by your downfall.',
         whatTitle: 'What this monstrosity does',
@@ -607,11 +636,13 @@
           'The app is equal-opportunity disrespect. Nobody escapes looking dignified.'
         ],
         startBtn: 'Destroy My Self-Esteem',
-        backBtn: 'Back to Denial',
+        credits: 'Inspired by SBTI test by B站@蛆肉儿串儿 · Art: AI-generated satirical portraits · Built with love, bile, and zero dependencies',
+        backBtn: 'Back to Home',
         submitBtn: 'Judge Me',
         restartBtn: 'Get Roasted Again',
-        toTopBtn: 'Back to Denial',
+        toTopBtn: 'Back to Home',
         testHint: 'Answer everything. If society has to tolerate your personality, you can tolerate 33 clicks.',
+        testHintDone: 'All answered. Hand your ego to the machine.',
         resultKicker: 'YOUR PRIMARY DAMAGE TYPE',
         analysisTitle: 'Clinical Notes Written by an Unlicensed Hater',
         dimTitle: 'Axis Breakdown',
@@ -620,41 +651,49 @@
         normalNote: 'This result uses standard MBTI-style binary scoring: 8 questions per axis, 8-16 for the first letter, 17-24 for the second.',
         posterCaption: 'The art department took one look at your psyche and requested hazard pay.',
         posterSub: 'Your summary appears here, like a police sketch drawn by a therapist with a grudge.',
-        confidence: 'Confidence'
+        confidence: 'Confidence',
+        questionLabel: 'Question',
+        hiddenLabel: 'Hidden sabotage',
+        axisLabel: 'Axis'
       },
       zh: {
         title: 'MBTI 是骗局。这个更离谱。',
-        pageTitle: 'MBTI 是骗局。这个更离谱。',
-        eyebrow: '恶搞测评，零资质，最大胆量',
-        subtitle: '一个用临床级精准度和零资质来 roast 你的人格测试。三十二道题，一个隐藏陷阱，四条伪科学轴线，以及一个你绝对会截图发给朋友的结果——尽管他们不该为你的崩塌笑得这么开心。',
+        pageTitle: 'RTI - MBTI 是骗局。这个更离谱。',
+        eyebrow: '恶搞测评,零资质,最大胆量',
+        subtitle: '一个用临床级精准度和零资质来 roast 你的人格测试。三十二道题,一个隐藏陷阱,四条伪科学轴线,以及一个你绝对会截图发给朋友的结果--尽管他们不该为你的崩塌笑得这么开心。',
         whatTitle: '这玩意儿干嘛的',
         whatItems: [
-          '使用正经的 4 轴 MBTI 评分，因为我们尊重有结构的胡说八道。',
-          '随机打乱题目顺序，让你没法 min-max 你的情感伤害。',
-          '包含一个隐藏的 LOWB 结局，献给那些勇于自我举报灾难级品味的人。',
-          '包含一个 GLITCH 兜底，给那些答题像闹鬼验证码的人准备的。'
+          '使用正经的 4 轴 MBTI 评分,因为我们尊重有结构的胡说八道。',
+          '随机打乱题目顺序,让你没法 min-max 你的情感伤害。',
+          '包含一个隐藏的 LOWB 结局,献给那些勇于自我举报灾难级品味的人。',
+          '包含一个 GLITCH 兜底,给那些答题像闹鬼验证码的人准备的。'
         ],
         beforeTitle: '开始之前',
         beforeItems: [
-          '这是讽刺，不是心理治疗。',
-          '如果结果准得让你不舒服，那是你和抛弃了质量管控的上帝之间的事。',
+          '这是讽刺,不是心理治疗。',
+          '如果结果准得让你不舒服,那是你和抛弃了质量管控的上帝之间的事。',
           '本应用机会均等地不尊重所有人。没人能体面地离开。'
         ],
         startBtn: '摧毁我的自尊',
-        backBtn: '回到否认',
+        credits: '灵感来源:SBTI 测试 by B站@蛆肉儿串儿 · 插图:AI 生成的讽刺漫画 · 用爱、苦水和零依赖构建',
+        backBtn: '回到首页',
         submitBtn: '审判我',
         restartBtn: '再被烤一次',
-        toTopBtn: '回到否认',
-        testHint: '全部回答完。既然社会都在忍受你的人格了，你也忍一忍这 33 次点击。',
+        toTopBtn: '回到首页',
+        testHint: '全部回答完。既然社会都在忍受你的人格了,你也忍一忍这 33 次点击。',
+        testHintDone: '全部答完。把你的自尊交给机器吧。',
         resultKicker: '你的主要损伤类型',
         analysisTitle: '由无证黑子撰写的临床笔记',
         dimTitle: '轴线分析',
         noteTitle: '给即将把这当人格的人的免责声明',
-        specialNote: '特殊结果覆盖了标准类型，因为测试要么触发了隐藏机关，要么你的答题模式看起来像有主见的断网 Wi-Fi。',
-        normalNote: '本结果使用标准 MBTI 二分法评分：每轴 8 题，8-16 为第一个字母，17-24 为第二个字母。',
+        specialNote: '特殊结果覆盖了标准类型,因为测试要么触发了隐藏机关,要么你的答题模式看起来像有主见的断网 Wi-Fi。',
+        normalNote: '本结果使用标准 MBTI 二分法评分:每轴 8 题,8-16 为第一个字母,17-24 为第二个字母。',
         posterCaption: '美术部门看了你的心理画像后申请了危险津贴。',
-        posterSub: '你的简介会出现在这里，就像一幅由怀恨在心的心理咨询师画的嫌疑人素描。',
-        confidence: '置信度'
+        posterSub: '你的简介会出现在这里,就像一幅由怀恨在心的心理咨询师画的嫌疑人素描。',
+        confidence: '置信度',
+        questionLabel: '第',
+        hiddenLabel: '隐藏破坏',
+        axisLabel: '轴'
       }
     };
 
@@ -682,27 +721,26 @@
     function applyLangToIntro() {
       const el = document.getElementById('intro');
       if (!el) return;
-      const h1 = el.querySelector('h1'); if (h1) h1.textContent = t('title');
-      const eyebrow = el.querySelector('.eyebrow'); if (eyebrow) eyebrow.textContent = t('eyebrow');
-      const sub = el.querySelector('.sub'); if (sub) sub.textContent = t('subtitle');
-      const panels = el.querySelectorAll('.mini-panel');
-      if (panels[0]) {
-        panels[0].querySelector('h3').textContent = t('whatTitle');
-        const lis = panels[0].querySelectorAll('li');
-        t('whatItems').forEach((txt, i) => { if (lis[i]) lis[i].textContent = txt; });
-      }
-      if (panels[1]) {
-        panels[1].querySelector('h3').textContent = t('beforeTitle');
-        const lis = panels[1].querySelectorAll('li');
-        t('beforeItems').forEach((txt, i) => { if (lis[i]) lis[i].textContent = txt; });
-      }
+      const h1 = document.getElementById('introTitle'); if (h1) h1.innerHTML = t('title').replace('. ', '.<br>');
+      const eyebrow = document.getElementById('introEyebrow'); if (eyebrow) eyebrow.textContent = t('eyebrow');
+      const sub = document.getElementById('introSub'); if (sub) sub.textContent = t('subtitle');
+      const whatTitle = document.getElementById('introWhatTitle'); if (whatTitle) whatTitle.textContent = t('whatTitle');
+      const whatList = document.getElementById('introWhatList');
+      if (whatList) { const lis = whatList.querySelectorAll('li'); t('whatItems').forEach((txt, i) => { if (lis[i]) lis[i].textContent = txt; }); }
+      const beforeTitle = document.getElementById('introBeforeTitle'); if (beforeTitle) beforeTitle.textContent = t('beforeTitle');
+      const beforeList = document.getElementById('introBeforeList');
+      if (beforeList) { const lis = beforeList.querySelectorAll('li'); t('beforeItems').forEach((txt, i) => { if (lis[i]) lis[i].textContent = txt; }); }
+      const credits = document.getElementById('introCredits'); if (credits) credits.querySelector('span').textContent = t('credits');
       const startBtn = document.getElementById('startBtn'); if (startBtn) startBtn.textContent = t('startBtn');
+      document.title = t('pageTitle');
     }
 
     function applyLangToTest() {
       const hint = document.getElementById('testHint'); if (hint) hint.textContent = t('testHint');
       const backBtn = document.getElementById('backIntroBtn'); if (backBtn) backBtn.textContent = t('backBtn');
       const submitBtn = document.getElementById('submitBtn'); if (submitBtn) submitBtn.textContent = t('submitBtn');
+      // Re-render questions if test is active to switch language
+      if (app.shuffledQuestions.length > 0) renderQuestions();
     }
 
     function applyLangToResult() {
@@ -711,6 +749,10 @@
       const analysisH3 = document.querySelector('.analysis-box h3'); if (analysisH3) analysisH3.textContent = t('analysisTitle');
       const dimH3 = document.querySelector('.dim-box h3'); if (dimH3) dimH3.textContent = t('dimTitle');
       const noteH3 = document.querySelector('.note-box h3'); if (noteH3) noteH3.textContent = t('noteTitle');
+      // If result screen is visible, re-render result content for language switch
+      if (document.getElementById('result').classList.contains('active')) {
+        renderResult();
+      }
     }
 
     const DISCLAIMER_EN = `⚠️ DISCLAIMER
@@ -722,12 +764,12 @@ Do not use this for hiring, dating, medical, legal, spiritual, or any remotely s
 Original inspiration: the SBTI test by B站@蛆肉儿串儿`;
 
     const DISCLAIMER_ZH = `⚠️ 免责声明
-本测试是讽刺作品。它不是心理学、科学或治疗——它是用来娱乐的人格 roast。
-部分内容刻意冒犯，包括刻板印象、黑色幽默和夸张概括。
+本测试是讽刺作品。它不是心理学、科学或治疗--它是用来娱乐的人格 roast。
+部分内容刻意冒犯,包括刻板印象、黑色幽默和夸张概括。
 每种类型被同等摧毁。没有任何群体、身份或人格被特别针对或放过。
-如果任何结果精准得让你不舒服，那是你的问题，不是我们的问题。
+如果任何结果精准得让你不舒服,那是你的问题,不是我们的问题。
 请勿将此用于招聘、约会、医疗、法律、心灵或任何哪怕稍微严肃的用途。
-灵感来源：SBTI 测试 by B站@蛆肉儿串儿`;
+灵感来源:SBTI 测试 by B站@蛆肉儿串儿`;
 
     function getDisclaimer() { return currentLang === 'zh' ? DISCLAIMER_ZH : DISCLAIMER_EN; }
 
@@ -742,192 +784,192 @@ Original inspiration: the SBTI test by B站@蛆肉儿串儿`;
       EI: {
         low: "You recharge by absorbing other people's energy like a social vampire. Silence makes you think you're dying.",
         high: "Your ideal Friday night is canceling plans you never made, then calling that self-care and spiritual alignment.",
-        low_zh: "你通过吸收别人的能量来充电，像个社交型吸血鬼。沉默让你觉得自己快死了。",
-        high_zh: "你理想的周五晚上是取消你从未制定过的计划，然后把这称为 self-care 和精神对齐。"
+        low_zh: "你通过吸收别人的能量来充电,像个社交型吸血鬼。沉默让你觉得自己快死了。",
+        high_zh: "你理想的周五晚上是取消你从未制定过的计划,然后把这称为 self-care 和精神对齐。"
       },
       SN: {
         low: "You trust what you can punch, label, alphabetize, or complain about in a Yelp review.",
         high: "You live in 2045 inside your head, drafting symbolic interpretations of a text message that just said 'k'.",
         low_zh: "你只相信能摸到、能贴标签、能按字母排序或能在点评网站上投诉的东西。",
-        high_zh: "你活在脑子里的 2045 年，正在为一条只写了 'k' 的消息赋予象征主义解读。"
+        high_zh: "你活在脑子里的 2045 年,正在为一条只写了 'k' 的消息赋予象征主义解读。"
       },
       TF: {
         low: "Your heart is a spreadsheet and your compassion arrives as bullet points, if at all.",
         high: "You cried at a car insurance commercial and called it empathy, which is adorable and operationally useless.",
-        low_zh: "你的心是一张 Excel 表格，你的同情心以要点列表的形式送达——如果能送达的话。",
-        high_zh: "你看车险广告都哭了，还管这叫共情。很可爱，但在操作层面毫无用处。"
+        low_zh: "你的心是一张 Excel 表格,你的同情心以要点列表的形式送达--如果能送达的话。",
+        high_zh: "你看车险广告都哭了,还管这叫共情。很可爱,但在操作层面毫无用处。"
       },
       JP: {
         low: "Your calendar has a calendar. If chaos walked into your life you'd laminate an emergency workflow for it.",
         high: "Plans are just suggestions you'll ignore the second a shinier impulse crawls out of the bushes.",
-        low_zh: "你的日历还有一个日历。如果混乱走进你的生活，你会把它过塞并制定一套紧急工作流。",
-        high_zh: "计划只是建议，你会在更闪亮的冲动从草丛里爬出来的那一秒就无视它们。"
+        low_zh: "你的日历还有一个日历。如果混乱走进你的生活,你会把它过塞并制定一套紧急工作流。",
+        high_zh: "计划只是建议,你会在更闪亮的冲动从草丛里爬出来的那一秒就无视它们。"
       }
     };
 
     const QUESTIONS = [
-{ id: 'ei1', dim: 'EI', text: 'At a party, you become the kind of person who...', text_zh: '在派对上，你通常会变成那种...', options: [
-        { label: 'collects new people like Pokémon and somehow knows everyone’s trauma by 10:30.', label_zh: '像收集宝可梦一样收集新朋友，十点半之前就掌握了每个人的心理创伤。', value: 1 },
-        { label: 'hovers near the snacks and lets fate decide whether conversation happens.', label_zh: '在零食桌旁徘徊，让命运决定要不要发生社交对话。', value: 2 },
-        { label: 'pets the host’s dog and vanishes into a quieter room like a Victorian ghost.', label_zh: '撸主人家的狗，然后像维多利亚时代的幽灵一样消失到一个安静的房间。', value: 3 }
+{ id: 'ei1', dim: 'EI', text: `At a party, you become the kind of person who...`, text_zh: `在派对上,你通常会变成那种...`, options: [
+        { label: `collects new people like Pokémon and somehow knows everyone's trauma by 10:30.`, label_zh: `像收集宝可梦一样收集新朋友,十点半之前就掌握了每个人的心理创伤。`, value: 1 },
+        { label: `hovers near the snacks and lets fate decide whether conversation happens.`, label_zh: `在零食桌旁徘徊,让命运决定要不要发生社交对话。`, value: 2 },
+        { label: `pets the host's dog and vanishes into a quieter room like a Victorian ghost.`, label_zh: `撸主人家的狗,然后像维多利亚时代的幽灵一样消失到一个安静的房间。`, value: 3 }
       ]},
-      { id: 'ei2', dim: 'EI', text: 'Your phone has 17 unread group messages. Your reaction is...', text_zh: '你的手机上有 17 条未读群消息。你的反应是...', options: [
-        { label: 'finally, an arena. I shall enter and make jokes until someone falls in love with me.', label_zh: '终于，一个角斗场。我将入场讲段子，直到有人爱上我。', value: 1 },
-        { label: 'I’ll skim it later and contribute one decent meme if the vibe survives.', label_zh: '晚点再扫一眼，如果话题还没死就贡献一个还算凑合的 meme。', value: 2 },
-        { label: 'I would rather fake my own death than answer “what’s the plan?” again.', label_zh: '我宁愿伪造自己的死亡也不想再回一次“我们怎么安排？”了。', value: 3 }
+      { id: 'ei2', dim: 'EI', text: `Your phone has 17 unread group messages. Your reaction is...`, text_zh: `你的手机上有 17 条未读群消息。你的反应是...`, options: [
+        { label: `finally, an arena. I shall enter and make jokes until someone falls in love with me.`, label_zh: `终于,一个角斗场。我将入场讲段子,直到有人爱上我。`, value: 1 },
+        { label: `I'll skim it later and contribute one decent meme if the vibe survives.`, label_zh: `晚点再扫一眼,如果话题还没死就贡献一个还算凑合的 meme。`, value: 2 },
+        { label: `I would rather fake my own death than answer "what's the plan?" again.`, label_zh: `我宁愿伪造自己的死亡也不想再回一次"我们怎么安排?"了。`, value: 3 }
       ]},
-      { id: 'ei3', dim: 'EI', text: 'How many friends do you prefer?', text_zh: '你倾向于有多少朋友？', options: [
-        { label: 'a loud rotating cast, because silence feels like unemployment.', label_zh: '一个喧闹轮换的班底，因为沉默感觉就像失业一样。', value: 1 },
-        { label: 'a few close ones plus some situational NPCs.', label_zh: '几个密友，加上一些看场合出现的 NPC。', value: 2 },
-        { label: 'two and a half, and one of them is a playlist.', label_zh: '两个半，其中半个是我的歌单。', value: 3 }
+      { id: 'ei3', dim: 'EI', text: `How many friends do you prefer?`, text_zh: `你倾向于有多少朋友?`, options: [
+        { label: `a loud rotating cast, because silence feels like unemployment.`, label_zh: `一个喧闹轮换的班底,因为沉默感觉就像失业一样。`, value: 1 },
+        { label: `a few close ones plus some situational NPCs.`, label_zh: `几个密友,加上一些看场合出现的 NPC。`, value: 2 },
+        { label: `two and a half, and one of them is a playlist.`, label_zh: `两个半,其中半个是我的歌单。`, value: 3 }
       ]},
-      { id: 'ei4', dim: 'EI', text: 'Small talk at work is...', text_zh: '工作中的寒暄（Small talk）是...', options: [
-        { label: 'easy mode. I can discuss weather, coffee, and fake enthusiasm all day.', label_zh: '简单模式。我可以聊一整天天气、咖啡和虚假的职场热情。', value: 1 },
-        { label: 'bearable if there is an exit strategy and a beverage.', label_zh: '如果有撤退策略和一杯饮料的话，还算能忍。', value: 2 },
-        { label: 'a human rights violation conducted beside a printer.', label_zh: '在打印机旁进行的一场反人类罪行。', value: 3 }
+      { id: 'ei4', dim: 'EI', text: `Small talk at work is...`, text_zh: `工作中的寒暄(Small talk)是...`, options: [
+        { label: `easy mode. I can discuss weather, coffee, and fake enthusiasm all day.`, label_zh: `简单模式。我可以聊一整天天气、咖啡和虚假的职场热情。`, value: 1 },
+        { label: `bearable if there is an exit strategy and a beverage.`, label_zh: `如果有撤退策略和一杯饮料的话,还算能忍。`, value: 2 },
+        { label: `a human rights violation conducted beside a printer.`, label_zh: `在打印机旁进行的一场反人类罪行。`, value: 3 }
       ]},
-      { id: 'ei5', dim: 'EI', text: 'After a long week, your ideal reset looks like...', text_zh: '漫长的一周结束后，你理想的重置方式是...', options: [
-        { label: 'going out, seeing people, collecting stories, and maybe a mild felony of oversharing.', label_zh: '出门，见人，收集故事，顺便犯下轻度过度分享罪。', value: 1 },
-        { label: 'something low-pressure with exactly the right people.', label_zh: '和恰到好处的人做点毫无压力的事。', value: 2 },
-        { label: 'locking the door, turning on Do Not Disturb, and speaking to nobody but the delivery app.', label_zh: '锁门，开启“勿扰模式”，除了外卖 App 不和任何人说话。', value: 3 }
+      { id: 'ei5', dim: 'EI', text: `After a long week, your ideal reset looks like...`, text_zh: `漫长的一周结束后,你理想的重置方式是...`, options: [
+        { label: `going out, seeing people, collecting stories, and maybe a mild felony of oversharing.`, label_zh: `出门,见人,收集故事,顺便犯下轻度过度分享罪。`, value: 1 },
+        { label: `something low-pressure with exactly the right people.`, label_zh: `和恰到好处的人做点毫无压力的事。`, value: 2 },
+        { label: `locking the door, turning on Do Not Disturb, and speaking to nobody but the delivery app.`, label_zh: `锁门,开启"勿扰模式",除了外卖 App 不和任何人说话。`, value: 3 }
       ]},
-      { id: 'ei6', dim: 'EI', text: 'In a group project, you are usually...', text_zh: '在团队项目中，你通常是...', options: [
-        { label: 'the loud coordinator who somehow became spokesperson through sheer momentum.', label_zh: '那个不知怎么就靠着一股冲劲成了发言人的吵闹协调者。', value: 1 },
-        { label: 'the reliable contributor pretending not to notice the train wreck.', label_zh: '那个假装没看见这列火车即将脱轨的可靠贡献者。', value: 2 },
-        { label: 'the competent hermit doing your part alone because collaboration is just inefficiency with eye contact.', label_zh: '那个能干的隐士，自己单干，因为协作就是伴随着眼神交流的低效劳动。', value: 3 }
+      { id: 'ei6', dim: 'EI', text: `In a group project, you are usually...`, text_zh: `在团队项目中,你通常是...`, options: [
+        { label: `the loud coordinator who somehow became spokesperson through sheer momentum.`, label_zh: `那个不知怎么就靠着一股冲劲成了发言人的吵闹协调者。`, value: 1 },
+        { label: `the reliable contributor pretending not to notice the train wreck.`, label_zh: `那个假装没看见这列火车即将脱轨的可靠贡献者。`, value: 2 },
+        { label: `the competent hermit doing your part alone because collaboration is just inefficiency with eye contact.`, label_zh: `那个能干的隐士,自己单干,因为协作就是伴随着眼神交流的低效劳动。`, value: 3 }
       ]},
-      { id: 'ei7', dim: 'EI', text: 'Your social media presence is best described as...', text_zh: '你在社交媒体上的存在感最好被描述为...', options: [
-        { label: 'active, chaotic, and suspiciously good at mining validation from strangers.', label_zh: '活跃、混乱，并且可疑地擅长从陌生人那里榨取认同感。', value: 1 },
-        { label: 'intermittent. Sometimes I post, sometimes I vanish like a crypto founder.', label_zh: '间歇性的。有时我发帖，有时我像加密货币创始人一样人间蒸发。', value: 2 },
-        { label: 'mostly lurking. I consume everyone else’s drama from behind bulletproof glass.', label_zh: '潜水为主。我躲在防弹玻璃后消费着其他所有人的抓马。', value: 3 }
+      { id: 'ei7', dim: 'EI', text: `Your social media presence is best described as...`, text_zh: `你在社交媒体上的存在感最好被描述为...`, options: [
+        { label: `active, chaotic, and suspiciously good at mining validation from strangers.`, label_zh: `活跃、混乱,并且可疑地擅长从陌生人那里榨取认同感。`, value: 1 },
+        { label: `intermittent. Sometimes I post, sometimes I vanish like a crypto founder.`, label_zh: `间歇性的。有时我发帖,有时我像加密货币创始人一样人间蒸发。`, value: 2 },
+        { label: `mostly lurking. I consume everyone else's drama from behind bulletproof glass.`, label_zh: `潜水为主。我躲在防弹玻璃后消费着其他所有人的抓马。`, value: 3 }
       ]},
-      { id: 'ei8', dim: 'EI', text: 'You’re seated next to a stranger on a long flight. You...', text_zh: '长途飞行中你被安排坐在一个陌生人旁边。你会...', options: [
-        { label: 'end up hearing their life story and offering restaurant recommendations in a city you’ve never visited.', label_zh: '最后听完了他们的人生故事，并给了一个你从未去过的城市的餐厅推荐。', value: 1 },
-        { label: 'exchange a few polite lines, then retreat into your headphones like a civilized mammal.', label_zh: '交换几句客套话，然后像个体面的哺乳动物一样退缩回你的耳机里。', value: 2 },
-        { label: 'deploy neck pillow, dead eyes, and anti-conversation posture before takeoff.', label_zh: '起飞前就部署好颈枕、死鱼眼和拒绝交谈的防御姿态。', value: 3 }
-      ]},
-
-      { id: 'sn1', dim: 'SN', text: 'When somebody explains a plan, you care most about...', text_zh: '当有人解释一个计划时，你最关心...', options: [
-        { label: 'what exactly happens, in what order, and whether the printer is involved.', label_zh: '具体发生什么，按什么顺序，以及是否涉及到打印机。', value: 1 },
-        { label: 'the broad idea plus enough specifics to avoid public humiliation.', label_zh: '大体思路，外加刚好能避免公开处刑的具体细节。', value: 2 },
-        { label: 'the hidden pattern, future implications, and whether this is secretly about colonialism.', label_zh: '隐藏的模式，未来的影响，以及这是否暗指了殖民主义。', value: 3 }
-      ]},
-      { id: 'sn2', dim: 'SN', text: 'Instructions from IKEA are...', text_zh: '宜家（IKEA）的安装说明书是...', options: [
-        { label: 'holy scripture. The tiny man with the hex key is my prophet.', label_zh: '神圣的经文。那个拿内六角扳手的小人是我的先知。', value: 1 },
-        { label: 'useful until I get bored and improvise like a divorced wizard.', label_zh: '管用，直到我感到无聊，开始像个离婚的男巫一样即兴发挥。', value: 2 },
-        { label: 'a suggestion. I can feel the shelf’s true form in the astral plane.', label_zh: '只是建议。我能在星光界感知到那个书架的真实形态。', value: 3 }
-      ]},
-      { id: 'sn3', dim: 'SN', text: 'You daydream...', text_zh: '你做白日梦...', options: [
-        { label: 'rarely. Reality is already expensive enough.', label_zh: '很少。现实生活已经够贵了。', value: 1 },
-        { label: 'sometimes, but usually only when a meeting becomes emotionally tax-deductible.', label_zh: '有时，但通常只在某场会议已经可以被视作精神工伤的时候。', value: 2 },
-        { label: 'constantly. At this point your inner life qualifies as mixed-use commercial property.', label_zh: '持续不断。在这一点上，你的内心生活已经算作综合商业地产了。', value: 3 }
-      ]},
-      { id: 'sn4', dim: 'SN', text: 'A friend tells you about a weird coincidence. You think...', text_zh: '朋友告诉你一个奇怪的巧合。你认为...', options: [
-        { label: 'neat. Probability remains undefeated.', label_zh: '不错。概率学依然不可战胜。', value: 1 },
-        { label: 'maybe random, maybe meaningful, depends how sleep-deprived I am.', label_zh: '也许是随机的，也许有意义，取决于我缺不缺觉。', value: 2 },
-        { label: 'obviously the universe is subtweeting through symbolism again.', label_zh: '很明显，宇宙又在通过象征主义发表隐晦的推文（subtweeting）了。', value: 3 }
-      ]},
-      { id: 'sn5', dim: 'SN', text: 'At work, people rely on you for...', text_zh: '在工作中，人们依赖你...', options: [
-        { label: 'remembering reality, deadlines, names, facts, and where the normal scissors are.', label_zh: '记住现实、截止日期、名字、事实，以及普通的剪刀放在哪里。', value: 1 },
-        { label: 'a mix of practical sense and occasional cursed inspiration.', label_zh: '提供常识和偶尔被诅咒般的灵光一闪的混合体。', value: 2 },
-        { label: 'seeing ten moves ahead and inventing a weird but brilliant shortcut nobody asked for.', label_zh: '看透十步之外，并发明一种没人要求的怪异但绝妙的捷径。', value: 3 }
-      ]},
-      { id: 'sn6', dim: 'SN', text: 'Your relationship to routine is...', text_zh: '你与日常规律（routine）的关系是...', options: [
-        { label: 'routine keeps civilization from collapsing into a beanbag chair.', label_zh: '规律阻止了人类文明坍塌成一个懒人沙发。', value: 1 },
-        { label: 'I like some structure, but not enough to become a motivational LinkedIn post.', label_zh: '我喜欢一些结构，但不至于让我变成 LinkedIn 上的一篇打鸡血帖子。', value: 2 },
-        { label: 'routine is where ideas go to get euthanized.', label_zh: '规律是创意被实施安乐死的地方。', value: 3 }
-      ]},
-      { id: 'sn7', dim: 'SN', text: 'When you watch a movie, what sticks with you?', text_zh: '看电影时，什么会留在你的记忆里？', options: [
-        { label: 'the plot, the details, and whether the script respected basic cause and effect.', label_zh: '剧情，细节，以及剧本是否尊重了基本的因果关系。', value: 1 },
-        { label: 'the main story plus a few themes, if the popcorn wasn’t distracting.', label_zh: '主线故事外加几个主题，前提是爆米花没有让我分心。', value: 2 },
-        { label: 'the symbolism, the vibe, and one throwaway line you’ll now treat like prophecy.', label_zh: '象征主义，氛围，以及一句你现在会像对待预言一样对待的随口台词。', value: 3 }
-      ]},
-      { id: 'sn8', dim: 'SN', text: 'Your conspiracy-theory vulnerability level is...', text_zh: '你对阴谋论的易感程度是...', options: [
-        { label: 'low. If there’s no evidence, it belongs in a Reddit basement.', label_zh: '低。如果没有证据，它就该待在 Reddit 的地下室里。', value: 1 },
-        { label: 'moderate. I don’t believe it, but I will absolutely hear the insane man out.', label_zh: '中等。我不信，但我绝对愿意听那个疯子说完。', value: 2 },
-        { label: 'alarmingly high if the theory has diagrams, moon phases, and one emotionally convincing thread.', label_zh: '危险得高——如果那个理论有图表、月相，以及一条能在情感上说服我的线索的话。', value: 3 }
+      { id: 'ei8', dim: 'EI', text: `You're seated next to a stranger on a long flight. You...`, text_zh: `长途飞行中你被安排坐在一个陌生人旁边。你会...`, options: [
+        { label: `end up hearing their life story and offering restaurant recommendations in a city you've never visited.`, label_zh: `最后听完了他们的人生故事,并给了一个你从未去过的城市的餐厅推荐。`, value: 1 },
+        { label: `exchange a few polite lines, then retreat into your headphones like a civilized mammal.`, label_zh: `交换几句客套话,然后像个体面的哺乳动物一样退缩回你的耳机里。`, value: 2 },
+        { label: `deploy neck pillow, dead eyes, and anti-conversation posture before takeoff.`, label_zh: `起飞前就部署好颈枕、死鱼眼和拒绝交谈的防御姿态。`, value: 3 }
       ]},
 
-      { id: 'tf1', dim: 'TF', text: 'When making a decision, your default is...', text_zh: '做决定时，你的默认模式是...', options: [
-        { label: 'what makes the most sense, even if somebody cries and writes poetry about it.', label_zh: '怎么最合理怎么来，即使这会让某个人哭泣并为此写诗。', value: 1 },
-        { label: 'a cursed little coalition between logic and feelings.', label_zh: '逻辑和情感之间一个被诅咒的小型联盟。', value: 2 },
-        { label: 'what feels right, because a spreadsheet has never held your hand.', label_zh: '怎么感觉对怎么来，因为 Excel 表格从来没有牵过你的手。', value: 3 }
+      { id: 'sn1', dim: 'SN', text: `When somebody explains a plan, you care most about...`, text_zh: `当有人解释一个计划时,你最关心...`, options: [
+        { label: `what exactly happens, in what order, and whether the printer is involved.`, label_zh: `具体发生什么,按什么顺序,以及是否涉及到打印机。`, value: 1 },
+        { label: `the broad idea plus enough specifics to avoid public humiliation.`, label_zh: `大体思路,外加刚好能避免公开处刑的具体细节。`, value: 2 },
+        { label: `the hidden pattern, future implications, and whether this is secretly about colonialism.`, label_zh: `隐藏的模式,未来的影响,以及这是否暗指了殖民主义。`, value: 3 }
       ]},
-      { id: 'tf2', dim: 'TF', text: 'A friend is upset. Your first response is...', text_zh: '朋友很难过。你的第一反应是...', options: [
-        { label: 'diagnose the problem, propose fixes, and accidentally sound like customer support.', label_zh: '诊断问题，提出解决方案，结果不小心听起来像客服。', value: 1 },
-        { label: 'listen a bit, then ask whether they want advice or just snacks and sympathy.', label_zh: '听一会儿，然后问他们是要建议，还是只要零食和同情。', value: 2 },
-        { label: 'merge souls, validate every emotion, and cry in surround sound.', label_zh: '灵魂交融，验证每一种情绪，并用环绕立体声一起哭。', value: 3 }
+      { id: 'sn2', dim: 'SN', text: `Instructions from IKEA are...`, text_zh: `宜家(IKEA)的安装说明书是...`, options: [
+        { label: `holy scripture. The tiny man with the hex key is my prophet.`, label_zh: `神圣的经文。那个拿内六角扳手的小人是我的先知。`, value: 1 },
+        { label: `useful until I get bored and improvise like a divorced wizard.`, label_zh: `管用,直到我感到无聊,开始像个离婚的男巫一样即兴发挥。`, value: 2 },
+        { label: `a suggestion. I can feel the shelf's true form in the astral plane.`, label_zh: `只是建议。我能在星光界感知到那个书架的真实形态。`, value: 3 }
       ]},
-      { id: 'tf3', dim: 'TF', text: 'In arguments, you care more about...', text_zh: '在争吵中，你更关心...', options: [
-        { label: 'being accurate. Feelings can file an appeal later.', label_zh: '追求准确。感情问题晚点再提交上诉吧。', value: 1 },
-        { label: 'reaching a fair outcome without turning the room into a smoking crater.', label_zh: '达成一个公平的结果，而不是把房间变成一个冒烟的陨石坑。', value: 2 },
-        { label: 'how people are affected, because “technically correct” is how villains flirt.', label_zh: '人们受到了怎样的影响，因为“技术上正确”是反派人物调情的方式。', value: 3 }
+      { id: 'sn3', dim: 'SN', text: `You daydream...`, text_zh: `你做白日梦...`, options: [
+        { label: `rarely. Reality is already expensive enough.`, label_zh: `很少。现实生活已经够贵了。`, value: 1 },
+        { label: `sometimes, but usually only when a meeting becomes emotionally tax-deductible.`, label_zh: `有时,但通常只在某场会议已经可以被视作精神工伤的时候。`, value: 2 },
+        { label: `constantly. At this point your inner life qualifies as mixed-use commercial property.`, label_zh: `持续不断。在这一点上,你的内心生活已经算作综合商业地产了。`, value: 3 }
       ]},
-      { id: 'tf4', dim: 'TF', text: 'Someone says they value “brutal honesty.” You think...', text_zh: '有人说他们看重“残酷的诚实（brutal honesty）”。你觉得...', options: [
-        { label: 'finally, another adult who understands truth is not a spa treatment.', label_zh: '终于，又一个明白真相不是做水疗的成年人了。', value: 1 },
-        { label: 'depends. Some people mean honesty, some mean recreational cruelty.', label_zh: '看情况。有些人的意思是诚实，有些人的意思是娱乐性施虐。', value: 2 },
-        { label: 'that phrase is usually used by people who confuse being rude with having a personality.', label_zh: '这句话通常被那些把没教养错当成有个性的人使用。', value: 3 }
+      { id: 'sn4', dim: 'SN', text: `A friend tells you about a weird coincidence. You think...`, text_zh: `朋友告诉你一个奇怪的巧合。你认为...`, options: [
+        { label: `neat. Probability remains undefeated.`, label_zh: `不错。概率学依然不可战胜。`, value: 1 },
+        { label: `maybe random, maybe meaningful, depends how sleep-deprived I am.`, label_zh: `也许是随机的,也许有意义,取决于我缺不缺觉。`, value: 2 },
+        { label: `obviously the universe is subtweeting through symbolism again.`, label_zh: `很明显,宇宙又在通过象征主义发表隐晦的推文(subtweeting)了。`, value: 3 }
       ]},
-      { id: 'tf5', dim: 'TF', text: 'Criticism hits you like...', text_zh: '批评对你的打击就像...', options: [
-        { label: 'data. Useful data. Possibly from an idiot, but still data.', label_zh: '数据。有用的数据。可能来自一个白痴，但依然是数据。', value: 1 },
-        { label: 'annoying but survivable, like stepping in a puddle in good shoes.', label_zh: '烦人但能活下来，就像穿着好鞋踩进水坑。', value: 2 },
-        { label: 'a sniper round to the central nervous system followed by three days of emotional fanfiction.', label_zh: '一发打中中枢神经的狙击枪子弹，随后是为期三天的情感同人小说创作。', value: 3 }
+      { id: 'sn5', dim: 'SN', text: `At work, people rely on you for...`, text_zh: `在工作中,人们依赖你...`, options: [
+        { label: `remembering reality, deadlines, names, facts, and where the normal scissors are.`, label_zh: `记住现实、截止日期、名字、事实,以及普通的剪刀放在哪里。`, value: 1 },
+        { label: `a mix of practical sense and occasional cursed inspiration.`, label_zh: `提供常识和偶尔被诅咒般的灵光一闪的混合体。`, value: 2 },
+        { label: `seeing ten moves ahead and inventing a weird but brilliant shortcut nobody asked for.`, label_zh: `看透十步之外,并发明一种没人要求的怪异但绝妙的捷径。`, value: 3 }
       ]},
-      { id: 'tf6', dim: 'TF', text: 'Your tolerance for rom-com nonsense is...', text_zh: '你对浪漫喜剧（rom-com）里的降智操作的容忍度是...', options: [
-        { label: 'low. I cannot watch two adults destroy their lives because nobody sent one text.', label_zh: '低。我无法眼睁睁看着两个成年人仅仅因为没人发一条短信就毁掉自己的人生。', value: 1 },
-        { label: 'medium. I’ll allow it if the banter is good and the runtime is humane.', label_zh: '中等。如果互怼够精彩且时长人道，我可以允许它存在。', value: 2 },
-        { label: 'high. Please give me yearning, rain, violins, and emotional malpractice.', label_zh: '高。请给我渴望、雨水、小提琴和情感层面的医疗事故。', value: 3 }
+      { id: 'sn6', dim: 'SN', text: `Your relationship to routine is...`, text_zh: `你与日常规律(routine)的关系是...`, options: [
+        { label: `routine keeps civilization from collapsing into a beanbag chair.`, label_zh: `规律阻止了人类文明坍塌成一个懒人沙发。`, value: 1 },
+        { label: `I like some structure, but not enough to become a motivational LinkedIn post.`, label_zh: `我喜欢一些结构,但不至于让我变成 LinkedIn 上的一篇打鸡血帖子。`, value: 2 },
+        { label: `routine is where ideas go to get euthanized.`, label_zh: `规律是创意被实施安乐死的地方。`, value: 3 }
       ]},
-      { id: 'tf7', dim: 'TF', text: 'When conflict enters the room, you...', text_zh: '当冲突进入房间时，你...', options: [
-        { label: 'square up intellectually. If there must be blood, let it be peer-reviewed.', label_zh: '在智力上摆好架势。如果必须流血，那就让它经过同行评审（peer-reviewed）。', value: 1 },
-        { label: 'navigate carefully and hope nobody turns into a podcast about boundaries.', label_zh: '小心导航，希望没人会把自己变成一档关于“边界感”的播客。', value: 2 },
-        { label: 'feel the emotional pressure instantly and start trying to regulate everyone like a haunted kindergarten teacher.', label_zh: '立刻感受到情感压力，然后像个闹鬼的幼儿园老师一样开始试图调节所有人。', value: 3 }
+      { id: 'sn7', dim: 'SN', text: `When you watch a movie, what sticks with you?`, text_zh: `看电影时,什么会留在你的记忆里?`, options: [
+        { label: `the plot, the details, and whether the script respected basic cause and effect.`, label_zh: `剧情,细节,以及剧本是否尊重了基本的因果关系。`, value: 1 },
+        { label: `the main story plus a few themes, if the popcorn wasn't distracting.`, label_zh: `主线故事外加几个主题,前提是爆米花没有让我分心。`, value: 2 },
+        { label: `the symbolism, the vibe, and one throwaway line you'll now treat like prophecy.`, label_zh: `象征主义,氛围,以及一句你现在会像对待预言一样对待的随口台词。`, value: 3 }
       ]},
-      { id: 'tf8', dim: 'TF', text: 'You hear a wildly unhinged opinion online. Your impulse is to...', text_zh: '在网上听到极其狂乱的观点时。你的冲动是...', options: [
-        { label: 'correct it with links, screenshots, and the energy of a disappointed prosecutor.', label_zh: '带着失望的检察官一般的精力，用链接和截图去纠正它。', value: 1 },
-        { label: 'maybe reply if I have time and a stable blood sugar level.', label_zh: '如果我有时间且血糖水平稳定，也许会回复。', value: 2 },
-        { label: 'wonder what childhood wound produced this and whether they need soup.', label_zh: '想知道是什么样的童年创伤导致了这个，以及他们需不需要喝口热汤。', value: 3 }
+      { id: 'sn8', dim: 'SN', text: `Your conspiracy-theory vulnerability level is...`, text_zh: `你对阴谋论的易感程度是...`, options: [
+        { label: `low. If there's no evidence, it belongs in a Reddit basement.`, label_zh: `低。如果没有证据,它就该待在 Reddit 的地下室里。`, value: 1 },
+        { label: `moderate. I don't believe it, but I will absolutely hear the insane man out.`, label_zh: `中等。我不信,但我绝对愿意听那个疯子说完。`, value: 2 },
+        { label: `alarmingly high if the theory has diagrams, moon phases, and one emotionally convincing thread.`, label_zh: `危险得高--如果那个理论有图表、月相,以及一条能在情感上说服我的线索的话。`, value: 3 }
       ]},
 
-      { id: 'jp1', dim: 'JP', text: 'Your relationship with deadlines is...', text_zh: '你与截止日期（Deadline）的关系是...', options: [
-        { label: 'I finish early because unlike some of you, I fear God and Outlook Calendar.', label_zh: '我提前做完，因为和你们某些人不同，我敬畏上帝和 Outlook 日历。', value: 1 },
-        { label: 'I aim to be responsible, then negotiate with reality like a tired diplomat.', label_zh: '我试图负责任，然后像个疲惫的外交官一样与现实谈判。', value: 2 },
-        { label: 'the deadline and I have a toxic situationship that somehow keeps producing work.', label_zh: 'Deadline 和我处于一种有毒的暧昧关系（situationship）中，不知怎么地一直在产出工作。', value: 3 }
+      { id: 'tf1', dim: 'TF', text: `When making a decision, your default is...`, text_zh: `做决定时,你的默认模式是...`, options: [
+        { label: `what makes the most sense, even if somebody cries and writes poetry about it.`, label_zh: `怎么最合理怎么来,即使这会让某个人哭泣并为此写诗。`, value: 1 },
+        { label: `a cursed little coalition between logic and feelings.`, label_zh: `逻辑和情感之间一个被诅咒的小型联盟。`, value: 2 },
+        { label: `what feels right, because a spreadsheet has never held your hand.`, label_zh: `怎么感觉对怎么来,因为 Excel 表格从来没有牵过你的手。`, value: 3 }
       ]},
-      { id: 'jp2', dim: 'JP', text: 'Packing for a trip means...', text_zh: '为旅行打包意味着...', options: [
-        { label: 'a list, a backup list, and maybe a spreadsheet because negligence is ugly.', label_zh: '一张清单，一张备用清单，可能还有一张 Excel，因为疏忽是丑陋的。', value: 1 },
-        { label: 'some planning, some chaos, one forgotten charger, one lesson never learned.', label_zh: '一些计划，一些混乱，忘带一根充电线，以及一个永远学不会的教训。', value: 2 },
-        { label: 'throwing items into a bag while trusting the universe to provide underwear.', label_zh: '把东西扔进包里，同时相信宇宙会为我提供内裤。', value: 3 }
+      { id: 'tf2', dim: 'TF', text: `A friend is upset. Your first response is...`, text_zh: `朋友很难过。你的第一反应是...`, options: [
+        { label: `diagnose the problem, propose fixes, and accidentally sound like customer support.`, label_zh: `诊断问题,提出解决方案,结果不小心听起来像客服。`, value: 1 },
+        { label: `listen a bit, then ask whether they want advice or just snacks and sympathy.`, label_zh: `听一会儿,然后问他们是要建议,还是只要零食和同情。`, value: 2 },
+        { label: `merge souls, validate every emotion, and cry in surround sound.`, label_zh: `灵魂交融,验证每一种情绪,并用环绕立体声一起哭。`, value: 3 }
       ]},
-      { id: 'jp3', dim: 'JP', text: 'Your room being messy feels...', text_zh: '房间乱糟糟的，这让你感觉...', options: [
-        { label: 'spiritually offensive. Clutter is just anxiety with furniture.', label_zh: '精神上受到了冒犯。杂乱就是实体化的焦虑。', value: 1 },
-        { label: 'fine for a while, until it evolves into an archaeological dig site.', label_zh: '暂时还好，直到它进化成一个考古挖掘现场。', value: 2 },
-        { label: 'normal. I call it an adaptive ecosystem with emotional zoning.', label_zh: '正常。我称之为具有情感分区的自适应生态系统。', value: 3 }
+      { id: 'tf3', dim: 'TF', text: `In arguments, you care more about...`, text_zh: `在争吵中,你更关心...`, options: [
+        { label: `being accurate. Feelings can file an appeal later.`, label_zh: `追求准确。感情问题晚点再提交上诉吧。`, value: 1 },
+        { label: `reaching a fair outcome without turning the room into a smoking crater.`, label_zh: `达成一个公平的结果,而不是把房间变成一个冒烟的陨石坑。`, value: 2 },
+        { label: `how people are affected, because "technically correct" is how villains flirt.`, label_zh: `人们受到了怎样的影响,因为"技术上正确"是反派人物调情的方式。`, value: 3 }
       ]},
-      { id: 'jp4', dim: 'JP', text: 'Someone changes the plan last minute. You...', text_zh: '有人在最后一刻改变了计划。你...', options: [
-        { label: 'experience an internal coup because the sacred timeline has been vandalized.', label_zh: '经历了一场内部政变，因为神圣的时间线被破坏了。', value: 1 },
-        { label: 'complain briefly, then adapt like a semi-functional adult.', label_zh: '简单抱怨一下，然后像个半功能正常的成年人一样适应。', value: 2 },
-        { label: 'love it. Plans should fear me, not the other way around.', label_zh: '爱死它了。计划应该怕我，而不是反过来。', value: 3 }
+      { id: 'tf4', dim: 'TF', text: `Someone says they value "brutal honesty." You think...`, text_zh: `有人说他们看重"残酷的诚实(brutal honesty)"。你觉得...`, options: [
+        { label: `finally, another adult who understands truth is not a spa treatment.`, label_zh: `终于,又一个明白真相不是做水疗的成年人了。`, value: 1 },
+        { label: `depends. Some people mean honesty, some mean recreational cruelty.`, label_zh: `看情况。有些人的意思是诚实,有些人的意思是娱乐性施虐。`, value: 2 },
+        { label: `that phrase is usually used by people who confuse being rude with having a personality.`, label_zh: `这句话通常被那些把没教养错当成有个性的人使用。`, value: 3 }
       ]},
-      { id: 'jp5', dim: 'JP', text: 'How spontaneous are you really?', text_zh: '你到底有多随性（spontaneous）？', options: [
-        { label: 'I can schedule spontaneity for Thursday at 7:15 if that helps.', label_zh: '如果有帮助的话，我可以把“随性”安排在周四晚上 7:15。', value: 1 },
-        { label: 'situationally spontaneous, which is just planning in a fake mustache.', label_zh: '看情况的随性，这只是戴着假胡子的“计划”。', value: 2 },
-        { label: 'recklessly open to whatever nonsense enters the chat.', label_zh: '不顾一切地对任何进入群聊的胡扯敞开怀抱。', value: 3 }
+      { id: 'tf5', dim: 'TF', text: `Criticism hits you like...`, text_zh: `批评对你的打击就像...`, options: [
+        { label: `data. Useful data. Possibly from an idiot, but still data.`, label_zh: `数据。有用的数据。可能来自一个白痴,但依然是数据。`, value: 1 },
+        { label: `annoying but survivable, like stepping in a puddle in good shoes.`, label_zh: `烦人但能活下来,就像穿着好鞋踩进水坑。`, value: 2 },
+        { label: `a sniper round to the central nervous system followed by three days of emotional fanfiction.`, label_zh: `一发打中中枢神经的狙击枪子弹,随后是为期三天的情感同人小说创作。`, value: 3 }
       ]},
-      { id: 'jp6', dim: 'JP', text: 'When you have free time, you usually...', text_zh: '当你有空闲时间时，你通常会...', options: [
-        { label: 'organize it. Leisure should also have a deliverable.', label_zh: '把它组织起来。休闲也应该有可交付的成果（deliverable）。', value: 1 },
-        { label: 'start with a plan, then get distracted by snacks, laundry, or capitalism.', label_zh: '从一个计划开始，然后被零食、洗衣服或资本主义分心。', value: 2 },
-        { label: 'wander toward whatever looks interesting, irresponsible, or both.', label_zh: '朝着任何看起来有趣、不负责任或两者兼而有之的方向游荡。', value: 3 }
+      { id: 'tf6', dim: 'TF', text: `Your tolerance for rom-com nonsense is...`, text_zh: `你对浪漫喜剧(rom-com)里的降智操作的容忍度是...`, options: [
+        { label: `low. I cannot watch two adults destroy their lives because nobody sent one text.`, label_zh: `低。我无法眼睁睁看着两个成年人仅仅因为没人发一条短信就毁掉自己的人生。`, value: 1 },
+        { label: `medium. I'll allow it if the banter is good and the runtime is humane.`, label_zh: `中等。如果互怼够精彩且时长人道,我可以允许它存在。`, value: 2 },
+        { label: `high. Please give me yearning, rain, violins, and emotional malpractice.`, label_zh: `高。请给我渴望、雨水、小提琴和情感层面的医疗事故。`, value: 3 }
       ]},
-      { id: 'jp7', dim: 'JP', text: 'Buying something online looks like...', text_zh: '网购看起来像...', options: [
-        { label: 'research, price comparison, reviews, and one ethical panic about supply chains.', label_zh: '调查研究、比价、看评论，以及一次对供应链的道德恐慌。', value: 1 },
-        { label: 'a bit of comparison, then a decent guess and a prayer.', label_zh: '一点比较，然后做个靠谱的猜测并祈祷。', value: 2 },
-        { label: 'ooh shiny. purchased. consequences are a problem for Future Me, that gullible intern.', label_zh: '哦亮闪闪的。已购买。后果是“未来的我”那个好骗的实习生要解决的问题。', value: 3 }
+      { id: 'tf7', dim: 'TF', text: `When conflict enters the room, you...`, text_zh: `当冲突进入房间时,你...`, options: [
+        { label: `square up intellectually. If there must be blood, let it be peer-reviewed.`, label_zh: `在智力上摆好架势。如果必须流血,那就让它经过同行评审(peer-reviewed)。`, value: 1 },
+        { label: `navigate carefully and hope nobody turns into a podcast about boundaries.`, label_zh: `小心导航,希望没人会把自己变成一档关于"边界感"的播客。`, value: 2 },
+        { label: `feel the emotional pressure instantly and start trying to regulate everyone like a haunted kindergarten teacher.`, label_zh: `立刻感受到情感压力,然后像个闹鬼的幼儿园老师一样开始试图调节所有人。`, value: 3 }
       ]},
-      { id: 'jp8', dim: 'JP', text: 'Your personal motto is closest to...', text_zh: '你的人生座右铭最接近...', options: [
-        { label: 'control what you can, then control it harder.', label_zh: '控制你能控制的，然后更用力地控制它。', value: 1 },
-        { label: 'have a plan, but don’t marry it in public.', label_zh: '制定一个计划，但别在公开场合和它结婚。', value: 2 },
-        { label: 'we ball, even when the ball is legally classified as a fire hazard.', label_zh: '干就完了，哪怕这球在法律上被归类为火灾隐患。', value: 3 }
+      { id: 'tf8', dim: 'TF', text: `You hear a wildly unhinged opinion online. Your impulse is to...`, text_zh: `在网上听到极其狂乱的观点时。你的冲动是...`, options: [
+        { label: `correct it with links, screenshots, and the energy of a disappointed prosecutor.`, label_zh: `带着失望的检察官一般的精力,用链接和截图去纠正它。`, value: 1 },
+        { label: `maybe reply if I have time and a stable blood sugar level.`, label_zh: `如果我有时间且血糖水平稳定,也许会回复。`, value: 2 },
+        { label: `wonder what childhood wound produced this and whether they need soup.`, label_zh: `想知道是什么样的童年创伤导致了这个,以及他们需不需要喝口热汤。`, value: 3 }
+      ]},
+
+      { id: 'jp1', dim: 'JP', text: `Your relationship with deadlines is...`, text_zh: `你与截止日期(Deadline)的关系是...`, options: [
+        { label: `I finish early because unlike some of you, I fear God and Outlook Calendar.`, label_zh: `我提前做完,因为和你们某些人不同,我敬畏上帝和 Outlook 日历。`, value: 1 },
+        { label: `I aim to be responsible, then negotiate with reality like a tired diplomat.`, label_zh: `我试图负责任,然后像个疲惫的外交官一样与现实谈判。`, value: 2 },
+        { label: `the deadline and I have a toxic situationship that somehow keeps producing work.`, label_zh: `Deadline 和我处于一种有毒的暧昧关系(situationship)中,不知怎么地一直在产出工作。`, value: 3 }
+      ]},
+      { id: 'jp2', dim: 'JP', text: `Packing for a trip means...`, text_zh: `为旅行打包意味着...`, options: [
+        { label: `a list, a backup list, and maybe a spreadsheet because negligence is ugly.`, label_zh: `一张清单,一张备用清单,可能还有一张 Excel,因为疏忽是丑陋的。`, value: 1 },
+        { label: `some planning, some chaos, one forgotten charger, one lesson never learned.`, label_zh: `一些计划,一些混乱,忘带一根充电线,以及一个永远学不会的教训。`, value: 2 },
+        { label: `throwing items into a bag while trusting the universe to provide underwear.`, label_zh: `把东西扔进包里,同时相信宇宙会为我提供内裤。`, value: 3 }
+      ]},
+      { id: 'jp3', dim: 'JP', text: `Your room being messy feels...`, text_zh: `房间乱糟糟的,这让你感觉...`, options: [
+        { label: `spiritually offensive. Clutter is just anxiety with furniture.`, label_zh: `精神上受到了冒犯。杂乱就是实体化的焦虑。`, value: 1 },
+        { label: `fine for a while, until it evolves into an archaeological dig site.`, label_zh: `暂时还好,直到它进化成一个考古挖掘现场。`, value: 2 },
+        { label: `normal. I call it an adaptive ecosystem with emotional zoning.`, label_zh: `正常。我称之为具有情感分区的自适应生态系统。`, value: 3 }
+      ]},
+      { id: 'jp4', dim: 'JP', text: `Someone changes the plan last minute. You...`, text_zh: `有人在最后一刻改变了计划。你...`, options: [
+        { label: `experience an internal coup because the sacred timeline has been vandalized.`, label_zh: `经历了一场内部政变,因为神圣的时间线被破坏了。`, value: 1 },
+        { label: `complain briefly, then adapt like a semi-functional adult.`, label_zh: `简单抱怨一下,然后像个半功能正常的成年人一样适应。`, value: 2 },
+        { label: `love it. Plans should fear me, not the other way around.`, label_zh: `爱死它了。计划应该怕我,而不是反过来。`, value: 3 }
+      ]},
+      { id: 'jp5', dim: 'JP', text: `How spontaneous are you really?`, text_zh: `你到底有多随性(spontaneous)?`, options: [
+        { label: `I can schedule spontaneity for Thursday at 7:15 if that helps.`, label_zh: `如果有帮助的话,我可以把"随性"安排在周四晚上 7:15。`, value: 1 },
+        { label: `situationally spontaneous, which is just planning in a fake mustache.`, label_zh: `看情况的随性,这只是戴着假胡子的"计划"。`, value: 2 },
+        { label: `recklessly open to whatever nonsense enters the chat.`, label_zh: `不顾一切地对任何进入群聊的胡扯敞开怀抱。`, value: 3 }
+      ]},
+      { id: 'jp6', dim: 'JP', text: `When you have free time, you usually...`, text_zh: `当你有空闲时间时,你通常会...`, options: [
+        { label: `organize it. Leisure should also have a deliverable.`, label_zh: `把它组织起来。休闲也应该有可交付的成果(deliverable)。`, value: 1 },
+        { label: `start with a plan, then get distracted by snacks, laundry, or capitalism.`, label_zh: `从一个计划开始,然后被零食、洗衣服或资本主义分心。`, value: 2 },
+        { label: `wander toward whatever looks interesting, irresponsible, or both.`, label_zh: `朝着任何看起来有趣、不负责任或两者兼而有之的方向游荡。`, value: 3 }
+      ]},
+      { id: 'jp7', dim: 'JP', text: `Buying something online looks like...`, text_zh: `网购看起来像...`, options: [
+        { label: `research, price comparison, reviews, and one ethical panic about supply chains.`, label_zh: `调查研究、比价、看评论,以及一次对供应链的道德恐慌。`, value: 1 },
+        { label: `a bit of comparison, then a decent guess and a prayer.`, label_zh: `一点比较,然后做个靠谱的猜测并祈祷。`, value: 2 },
+        { label: `ooh shiny. purchased. consequences are a problem for Future Me, that gullible intern.`, label_zh: `哦亮闪闪的。已购买。后果是"未来的我"那个好骗的实习生要解决的问题。`, value: 3 }
+      ]},
+      { id: 'jp8', dim: 'JP', text: `Your personal motto is closest to...`, text_zh: `你的人生座右铭最接近...`, options: [
+        { label: `control what you can, then control it harder.`, label_zh: `控制你能控制的,然后更用力地控制它。`, value: 1 },
+        { label: `have a plan, but don't marry it in public.`, label_zh: `制定一个计划,但别在公开场合和它结婚。`, value: 2 },
+        { label: `we ball, even when the ball is legally classified as a fire hazard.`, label_zh: `干就完了,哪怕这球在法律上被归类为火灾隐患。`, value: 3 }
       ]}
 ];
 
@@ -936,22 +978,22 @@ Original inspiration: the SBTI test by B站@蛆肉儿串儿`;
         id: 'lowb_gate',
         special: true,
         kind: 'lowb_gate',
-        text: "What's your go-to coping mechanism?", text_zh: "你首选的应对机制（coping mechanism）是什么？",
+        text: "What's your go-to coping mechanism?", text_zh: "你首选的应对机制(coping mechanism)是什么?",
         options: [
-          { label: 'Retail therapy. If the void has hands, it can hold a shopping bag.', label_zh: '消费疗法。如果虚空有手，那它也能提个购物袋。', value: 1 },
-          { label: 'Doom scrolling until my soul becomes a thumb.', label_zh: '末日刷手机（Doom scrolling），直到我的灵魂变成一个大拇指。', value: 2 },
-          { label: 'Being a lowb.', label_zh: '当个 LOWB。', value: 3 },
-          { label: 'Gym. Convert sadness into expensive hydration habits.', label_zh: '健身房。把悲伤转化为昂贵的补水习惯。', value: 4 }
+          { label: `Retail therapy. If the void has hands, it can hold a shopping bag.`, label_zh: `消费疗法。如果虚空有手,那它也能提个购物袋。`, value: 1 },
+          { label: `Doom scrolling until my soul becomes a thumb.`, label_zh: `末日刷手机(Doom scrolling),直到我的灵魂变成一个大拇指。`, value: 2 },
+          { label: `Being a lowb.`, label_zh: `当个 LOWB。`, value: 3 },
+          { label: `Gym. Convert sadness into expensive hydration habits.`, label_zh: `健身房。把悲伤转化为昂贵的补水习惯。`, value: 4 }
         ]
       },
       lowbFollow: {
         id: 'lowb_follow',
         special: true,
         kind: 'lowb_follow',
-        text: 'How would you describe your aesthetic sense?', text_zh: "你会如何描述自己的审美？",
+        text: `How would you describe your aesthetic sense?`, text_zh: "你会如何描述自己的审美?",
         options: [
-          { label: 'I have opinions but keep them chill.', label_zh: '我有我的看法，但我保持克制（keep them chill）。', value: 1 },
-          { label: 'I once wore socks with sandals to a funeral and saw nothing wrong with it. I peaked in middle school and it\'s been downhill since. My contribution to any group is taking up physical space.', label_zh: '我曾经穿着凉鞋配袜子去参加葬礼，并且没觉得有什么不对。我的巅峰在初中，之后一直在走下坡路。我对任何群体的唯一贡献就是占据物理空间。', value: 2 }
+          { label: `I have opinions but keep them chill.`, label_zh: `我有我的看法,但我保持克制(keep them chill)。`, value: 1 },
+          { label: `I once wore socks with sandals to a funeral and saw nothing wrong with it. I peaked in middle school and it\'s been downhill since. My contribution to any group is taking up physical space.`, label_zh: `我曾经穿着凉鞋配袜子去参加葬礼,并且没觉得有什么不对。我的巅峰在初中,之后一直在走下坡路。我对任何群体的唯一贡献就是占据物理空间。`, value: 2 }
         ]
       }
     };
@@ -959,219 +1001,241 @@ Original inspiration: the SBTI test by B站@蛆肉儿串儿`;
     const TYPE_LIBRARY = {
       INTJ: {
         code: 'INTJ',
+        keyword: 'MASTERMIND',
+        keyword_zh: '阴谋家',
         roast_name: 'The Supervillain',
         tagline: 'Your master plan is great. Your social skills? Catastrophic.',
-        desc: `Congratulations, you are INTJ, the Supervillain, the only type capable of turning a Google Doc into a manifesto. According to our proprietary algorithm, you do not “have ideas,” you brood over strategic frameworks like a Bond villain who discovered Notion and lost the ability to make eye contact. Your mind is impressive, which is lucky, because your warmth is available only as a discontinued beta feature.
+        desc: `Congratulations, you are INTJ, the Supervillain, the only type capable of turning a Google Doc into a manifesto. According to our proprietary algorithm, you do not "have ideas," you brood over strategic frameworks like a Bond villain who discovered Notion and lost the ability to make eye contact. Your mind is impressive, which is lucky, because your warmth is available only as a discontinued beta feature.
 
-You approach life like it should have accepted your terms of service already. Other people are forever disappointing you by being emotional, inefficient, and somehow worse at pattern recognition than the average houseplant. You claim to hate incompetence, but secretly you need it. Without it, who would you silently judge while reorganizing the future in your head? On LinkedIn you radiate “I optimize systems,” but in real life you sometimes forget that humans do not respond well to being managed like defective software.
+You approach life like it should have accepted your terms of service already. Other people are forever disappointing you by being emotional, inefficient, and somehow worse at pattern recognition than the average houseplant. You claim to hate incompetence, but secretly you need it. Without it, who would you silently judge while reorganizing the future in your head? On LinkedIn you radiate "I optimize systems," but in real life you sometimes forget that humans do not respond well to being managed like defective software.
 
-Romantically, you give off the energy of a locked museum after hours. Fascinating, intimidating, and technically open to visitors, but only if they don’t touch anything. You call yourself independent, but really you’re just very committed to never being witnessed in a vulnerable state. That would be inefficient.
+Romantically, you give off the energy of a locked museum after hours. Fascinating, intimidating, and technically open to visitors, but only if they don't touch anything. You call yourself independent, but really you're just very committed to never being witnessed in a vulnerable state. That would be inefficient.
 
 Still, studies show civilization needs one icy freak in every room to stop the rest of us from setting the curtains on fire. So congratulations. You may die misunderstood, but at least your spreadsheets will be gorgeous.`,
         roast_name_zh: '超级大反派',
-        tagline_zh: '你的宏伟蓝图堪称完美。你的社交能力？灾难级别。',
-        desc_zh: `恭喜你，你是 INTJ，超级大反派。你是唯一能把 Google Doc 变成宣言的类型。根据我们的专有算法，你不是“有想法”，你是像一个刚发现 Notion 却失去眼神交流能力的邦德反派一样，在沉思战略框架。你的大脑很厉害，这是件好事，因为你的“热情”只作为一个被废弃的测试版功能存在。
+        tagline_zh: '你的宏伟蓝图堪称完美。你的社交能力?灾难级别。',
+        desc_zh: `恭喜你,你是 INTJ,超级大反派。你是唯一能把 Google Doc 变成宣言的类型。根据我们的专有算法,你不是"有想法",你是像一个刚发现 Notion 却失去眼神交流能力的邦德反派一样,在沉思战略框架。你的大脑很厉害,这是件好事,因为你的"热情"只作为一个被废弃的测试版功能存在。
 
-你对待生活就像它应该已经同意了你的服务条款一样。其他人总是让你失望，因为他们情绪化、效率低下，并且在模式识别上不知怎么的比普通室内植物还要差。你声称讨厌无能，但其实你暗地里需要它。没有它，你还能在脑海中重组未来时默默评判谁呢？在 LinkedIn 上，你散发着“我优化系统”的气场，但在现实生活中，你有时会忘记人类对“像有缺陷的软件一样被管理”并没有良好反应。
+你对待生活就像它应该已经同意了你的服务条款一样。其他人总是让你失望,因为他们情绪化、效率低下,并且在模式识别上不知怎么的比普通室内植物还要差。你声称讨厌无能,但其实你暗地里需要它。没有它,你还能在脑海中重组未来时默默评判谁呢?在 LinkedIn 上,你散发着"我优化系统"的气场,但在现实生活中,你有时会忘记人类对"像有缺陷的软件一样被管理"并没有良好反应。
 
-在恋爱中，你给人一种下班后被锁住的博物馆的感觉。迷人，令人生畏，并且在技术上对游客开放——但前提是他们不碰任何东西。你称自己独立，但其实你只是非常致力于不被别人看到你脆弱的状态。那太低效了。
+在恋爱中,你给人一种下班后被锁住的博物馆的感觉。迷人,令人生畏,并且在技术上对游客开放--但前提是他们不碰任何东西。你称自己独立,但其实你只是非常致力于不被别人看到你脆弱的状态。那太低效了。
 
-不过，研究表明，文明需要每个房间里都有一个冷冰冰的怪胎，以防止我们其余的人把窗帘点燃。所以，恭喜。你可能会在被误解中死去，但至少你的 Excel 表格会非常华丽。`
+不过,研究表明,文明需要每个房间里都有一个冷冰冰的怪胎,以防止我们其余的人把窗帘点燃。所以,恭喜。你可能会在被误解中死去,但至少你的 Excel 表格会非常华丽。`
       },
       INTP: {
         code: 'INTP',
+        keyword: 'OVERTHINKER',
+        keyword_zh: '想太多',
         roast_name: 'The Paralyzed Genius',
         tagline: "You've thought about everything. Done absolutely nothing.",
         desc: `Congratulations, you are INTP, the Paralyzed Genius, a being powered by curiosity, caffeine, and the catastrophic inability to close tabs, both digital and emotional. According to our lab, your brain is essentially a feral search engine running on 247 open windows and one dying battery. You can explain quantum weirdness, media theory, and why everyone on Reddit is wrong, but ask you to answer an email and suddenly time itself becomes a social construct.
 
-You are brilliant in the way unfinished architecture is brilliant, full of elegant lines, terrifying holes, and no plumbing. You don’t procrastinate because you’re lazy. You procrastinate because reality is a vulgar reduction of possibility. Why commit to one idea when you can lovingly overanalyze sixteen and then take a nap that becomes a moral philosophy seminar in your head?
+You are brilliant in the way unfinished architecture is brilliant, full of elegant lines, terrifying holes, and no plumbing. You don't procrastinate because you're lazy. You procrastinate because reality is a vulgar reduction of possibility. Why commit to one idea when you can lovingly overanalyze sixteen and then take a nap that becomes a moral philosophy seminar in your head?
 
-In conversation, you oscillate between charmingly insightful and alarmingly absent, like a professor who got lost inside his own footnotes. Emotionally, you treat feelings like suspicious pop-ups. You know they exist, you resent their timing, and you’d rather click “remind me later” until the relationship expires.
+In conversation, you oscillate between charmingly insightful and alarmingly absent, like a professor who got lost inside his own footnotes. Emotionally, you treat feelings like suspicious pop-ups. You know they exist, you resent their timing, and you'd rather click "remind me later" until the relationship expires.
 
 And yet, there is something weirdly lovable about the way you pursue truth with the dedication of a raccoon unscrewing a satellite dish. Humanity needs people who can ask impossible questions and ignore practical concerns long enough to discover something useful by accident. So congratulations. You may never finish your grand project, but your drafts will terrify lesser minds.`,
         roast_name_zh: '瘫痪的天才',
         tagline_zh: '你思考了一切。但什么都没做。',
-        desc_zh: `恭喜你，你是 INTP，瘫痪的天才。一个由好奇心、咖啡因以及灾难性地无法关闭标签页（无论是数字的还是情感的）驱动的存在。根据我们的实验室数据，你的大脑本质上就是一个狂乱的搜索引擎，运行着 247 个打开的窗口和一块快没电的电池。你能解释量子奇异性、媒体理论，以及为什么 Reddit 上的每个人都是错的，但如果让你回一封邮件，时间本身就会突然变成一种社会建构。
+        desc_zh: `恭喜你,你是 INTP,瘫痪的天才。一个由好奇心、咖啡因以及灾难性地无法关闭标签页(无论是数字的还是情感的)驱动的存在。根据我们的实验室数据,你的大脑本质上就是一个狂乱的搜索引擎,运行着 247 个打开的窗口和一块快没电的电池。你能解释量子奇异性、媒体理论,以及为什么 Reddit 上的每个人都是错的,但如果让你回一封邮件,时间本身就会突然变成一种社会建构。
 
-你的聪明就像未完工的建筑一样聪明：充满了优雅的线条、可怕的漏洞，并且没有下水管道。你不拖延是因为你懒。你拖延是因为现实是对可能性的粗俗缩减。既然你可以深情地过度分析 16 个想法，然后睡个觉，在脑子里把它变成一场道德哲学研讨会，为什么还要致力于其中一个呢？
+你的聪明就像未完工的建筑一样聪明:充满了优雅的线条、可怕的漏洞,并且没有下水管道。你不拖延是因为你懒。你拖延是因为现实是对可能性的粗俗缩减。既然你可以深情地过度分析 16 个想法,然后睡个觉,在脑子里把它变成一场道德哲学研讨会,为什么还要致力于其中一个呢?
 
-在谈话中，你在迷人的深刻和令人警惕的缺席之间摇摆，就像一个迷失在自己脚注里的教授。在情感上，你把感觉当作可疑的弹窗广告。你知道它们存在，你讨厌它们出现的时间，你宁愿点击“稍后提醒”，直到这段关系过期。
+在谈话中,你在迷人的深刻和令人警惕的缺席之间摇摆,就像一个迷失在自己脚注里的教授。在情感上,你把感觉当作可疑的弹窗广告。你知道它们存在,你讨厌它们出现的时间,你宁愿点击"稍后提醒",直到这段关系过期。
 
-然而，你像一只拧开卫星天线的浣熊一样追求真理，这种奉献精神莫名地让人觉得可爱。人类需要能提出不可能的问题、忽略现实问题，直到偶然发现有用的东西的人。所以，恭喜。你可能永远无法完成你的宏大项目，但你的草稿会让那些较弱的大脑感到恐惧。`
+然而,你像一只拧开卫星天线的浣熊一样追求真理,这种奉献精神莫名地让人觉得可爱。人类需要能提出不可能的问题、忽略现实问题,直到偶然发现有用的东西的人。所以,恭喜。你可能永远无法完成你的宏大项目,但你的草稿会让那些较弱的大脑感到恐惧。`
       },
       ENTJ: {
         code: 'ENTJ',
+        keyword: 'WARLORD',
+        keyword_zh: '军阀',
         roast_name: 'The Corporate Warlord',
         tagline: "You don't have friends. You have direct reports.",
-        desc: `Congratulations, you are ENTJ, the Corporate Warlord, a human TED Talk with blood pressure. Our proprietary model confirms you were not born, you were onboarded. Every room becomes a merger the second you enter it. You don’t ask how people are doing, you assess resource availability. Somewhere, somehow, a whiteboard is afraid of you.
+        desc: `Congratulations, you are ENTJ, the Corporate Warlord, a human TED Talk with blood pressure. Our proprietary model confirms you were not born, you were onboarded. Every room becomes a merger the second you enter it. You don't ask how people are doing, you assess resource availability. Somewhere, somehow, a whiteboard is afraid of you.
 
-You possess the unique gift of making ambition look both inspiring and deeply exhausting. You can turn a brunch into a strategy session and a breakup into a performance review. While other people are busy having hobbies, you are busy converting oxygen into market dominance. Your spiritual language is “leverage,” and your love language is “I already handled it.” Very romantic, if your dream partner is a consultancy deck wearing shoes.
+You possess the unique gift of making ambition look both inspiring and deeply exhausting. You can turn a brunch into a strategy session and a breakup into a performance review. While other people are busy having hobbies, you are busy converting oxygen into market dominance. Your spiritual language is "leverage," and your love language is "I already handled it." Very romantic, if your dream partner is a consultancy deck wearing shoes.
 
 The problem is that you sometimes confuse competence with moral superiority. You assume if you can do something better, you should be in charge of it. This is how you end up micromanaging vacation plans, fantasy football leagues, and the emotional processing speed of people who did not ask for a project manager with opinions about their healing journey.
 
-Still, studies show that when the building is on fire, everyone eventually turns to the loud psychopath with the clipboard. That’s you. Efficient, formidable, and one successful quarter away from becoming a cautionary tale. Congratulations, commander. You will absolutely get things done, and only occasionally remember you are also technically a mammal.`,
+Still, studies show that when the building is on fire, everyone eventually turns to the loud psychopath with the clipboard. That's you. Efficient, formidable, and one successful quarter away from becoming a cautionary tale. Congratulations, commander. You will absolutely get things done, and only occasionally remember you are also technically a mammal.`,
         roast_name_zh: '职场军阀',
         tagline_zh: '你没有朋友。你只有直接下属。',
-        desc_zh: `恭喜你，你是 ENTJ，职场军阀，一场长了血压的活体 TED Talk。我们的专有模型证实你不是被生出来的，你是被入职（onboarded）的。你进入房间的那一刻，房间就变成了一场并购。你从不问别人过得怎么样，你评估资源可用性。在某处，不知何故，一块白板正在害怕你。
+        desc_zh: `恭喜你,你是 ENTJ,职场军阀,一场长了血压的活体 TED Talk。我们的专有模型证实你不是被生出来的,你是被入职(onboarded)的。你进入房间的那一刻,房间就变成了一场并购。你从不问别人过得怎么样,你评估资源可用性。在某处,不知何故,一块白板正在害怕你。
 
-你拥有让野心看起来既鼓舞人心又令人极度疲惫的独特天赋。你能把一顿早午餐变成战略会议，把一次分手变成绩效评估。当别人在忙着搞爱好时，你在忙着把氧气转化为市场主导权。你的精神语言是“杠杆（leverage）”，你的爱的语言是“我已经处理好了”。这非常浪漫，如果你的梦想伴侣是一份穿着鞋的咨询 PPT 的话。
+你拥有让野心看起来既鼓舞人心又令人极度疲惫的独特天赋。你能把一顿早午餐变成战略会议,把一次分手变成绩效评估。当别人在忙着搞爱好时,你在忙着把氧气转化为市场主导权。你的精神语言是"杠杆(leverage)",你的爱的语言是"我已经处理好了"。这非常浪漫,如果你的梦想伴侣是一份穿着鞋的咨询 PPT 的话。
 
-问题在于，你有时会把能力和道德优越感混为一谈。你认为如果你能把一件事做得更好，你就应该负责它。这就是为什么你最终会微观管理（micromanage）度假计划、梦幻足球联赛，以及那些根本没要求一个项目经理对他们的治愈之旅发表意见的人的情感处理速度。
+问题在于,你有时会把能力和道德优越感混为一谈。你认为如果你能把一件事做得更好,你就应该负责它。这就是为什么你最终会微观管理(micromanage)度假计划、梦幻足球联赛,以及那些根本没要求一个项目经理对他们的治愈之旅发表意见的人的情感处理速度。
 
-不过，研究表明，当大楼起火时，每个人最终都会转向那个拿着剪贴板的大声说话的精神病患者。那就是你。高效、令人生畏，并且距离成为反面教材只有一个成功季度的距离。恭喜你，指挥官。你绝对能把事情搞定，只是偶尔才会想起你在技术上也属于哺乳动物。`
+不过,研究表明,当大楼起火时,每个人最终都会转向那个拿着剪贴板的大声说话的精神病患者。那就是你。高效、令人生畏,并且距离成为反面教材只有一个成功季度的距离。恭喜你,指挥官。你绝对能把事情搞定,只是偶尔才会想起你在技术上也属于哺乳动物。`
       },
       ENTP: {
         code: 'ENTP',
+        keyword: 'CONTRARIAN',
+        keyword_zh: '杠精',
         roast_name: "The Devil's Advocate",
         tagline: "You'd argue with a mirror. And lose. And enjoy it.",
-        desc: `Congratulations, you are ENTP, the Devil’s Advocate, proof that intelligence and impulse control are not naturally occurring roommates. Our findings indicate you do not converse so much as stage hostile takeovers of silence. You treat every topic like an improv debate final, every opinion like a chew toy, and every social boundary like a speed bump for your personality.
+        desc: `Congratulations, you are ENTP, the Devil's Advocate, proof that intelligence and impulse control are not naturally occurring roommates. Our findings indicate you do not converse so much as stage hostile takeovers of silence. You treat every topic like an improv debate final, every opinion like a chew toy, and every social boundary like a speed bump for your personality.
 
-You are charming in the way a fireworks factory is charming, dazzling, loud, and statistically concerning. People love your energy right up until they realize your hobby is testing the structural integrity of consensus. You don’t start arguments because you’re mean. You start them because boredom is your natural predator. If there is a stable vibe in the room, you feel morally obligated to poke it with a stick.
+You are charming in the way a fireworks factory is charming, dazzling, loud, and statistically concerning. People love your energy right up until they realize your hobby is testing the structural integrity of consensus. You don't start arguments because you're mean. You start them because boredom is your natural predator. If there is a stable vibe in the room, you feel morally obligated to poke it with a stick.
 
-Your ideas arrive faster than your follow-through, which means you are forever one brilliant concept away from actually shipping something. You have started enough projects to qualify as an abandoned mall. Romantically, you flirt like a stand-up comic running a usability test. If someone can’t keep up, you get bored. If they can keep up, you panic because now your nonsense has consequences.
+Your ideas arrive faster than your follow-through, which means you are forever one brilliant concept away from actually shipping something. You have started enough projects to qualify as an abandoned mall. Romantically, you flirt like a stand-up comic running a usability test. If someone can't keep up, you get bored. If they can keep up, you panic because now your nonsense has consequences.
 
 And yet, the world desperately needs one unhinged innovator who will ask the question everyone else was too polite, too scared, or too employable to ask. That person is you. Congratulations. You are exhausting, occasionally insufferable, and often right in the most annoying way possible.`,
         roast_name_zh: '杠精之王',
         tagline_zh: '你会跟镜子吵架。还会输。而且还很享受。',
-        desc_zh: `恭喜你，你是 ENTP，杠精之王（魔鬼代言人），这证明了智力和冲动控制并非天然存在的室友。我们的调查结果表明，你与其说是在交谈，不如说是对沉默进行了敌意收购。你把每个话题都当作即兴辩论的决赛，把每个观点都当作咀嚼玩具，把每个社交边界都当作你性格的减速带。
+        desc_zh: `恭喜你,你是 ENTP,杠精之王(魔鬼代言人),这证明了智力和冲动控制并非天然存在的室友。我们的调查结果表明,你与其说是在交谈,不如说是对沉默进行了敌意收购。你把每个话题都当作即兴辩论的决赛,把每个观点都当作咀嚼玩具,把每个社交边界都当作你性格的减速带。
 
-你的迷人之处就像烟花工厂一样迷人：耀眼、喧闹，并且在统计学上令人担忧。人们喜欢你的活力，直到他们意识到你的爱好是测试共识的结构完整性。你不挑起争端是因为你刻薄。你挑起争端是因为无聊是你的天敌。如果房间里有一种稳定的氛围，你会觉得在道德上有义务用棍子去戳它。
+你的迷人之处就像烟花工厂一样迷人:耀眼、喧闹,并且在统计学上令人担忧。人们喜欢你的活力,直到他们意识到你的爱好是测试共识的结构完整性。你不挑起争端是因为你刻薄。你挑起争端是因为无聊是你的天敌。如果房间里有一种稳定的氛围,你会觉得在道德上有义务用棍子去戳它。
 
-你的想法来得比你的执行力快，这意味着你永远距离真正发布（shipping）点什么差一个绝妙的概念。你启动的项目足以算作一个废弃的购物中心。在恋爱中，你调情就像一个单口喜剧演员在运行可用性测试。如果有人跟不上，你就会觉得无聊。如果他们跟得上，你就会恐慌，因为现在你的胡扯产生后果了。
+你的想法来得比你的执行力快,这意味着你永远距离真正发布(shipping)点什么差一个绝妙的概念。你启动的项目足以算作一个废弃的购物中心。在恋爱中,你调情就像一个单口喜剧演员在运行可用性测试。如果有人跟不上,你就会觉得无聊。如果他们跟得上,你就会恐慌,因为现在你的胡扯产生后果了。
 
-然而，世界迫切需要一个精神错乱的创新者，他会问出其他人都太有礼貌、太害怕或太需要保住工作而不敢问的问题。那个人就是你。恭喜。你让人筋疲力尽，偶尔让人无法忍受，而且经常以最烦人的方式正确着。`
+然而,世界迫切需要一个精神错乱的创新者,他会问出其他人都太有礼貌、太害怕或太需要保住工作而不敢问的问题。那个人就是你。恭喜。你让人筋疲力尽,偶尔让人无法忍受,而且经常以最烦人的方式正确着。`
       },
       INFJ: {
         code: 'INFJ',
+        keyword: 'MARTYR',
+        keyword_zh: '殉道者',
         roast_name: 'The Martyred Prophet',
         tagline: "You see through everyone's bullshit. Except your own.",
-        desc: `Congratulations, you are INFJ, the Martyred Prophet, humanity’s favorite limited-edition emotional cryptid. According to our algorithm, you move through life with the haunted certainty that you understand everyone better than they understand themselves, which would be impressive if you also understood why you insist on collecting damaged people like limited vinyl.
+        desc: `Congratulations, you are INFJ, the Martyred Prophet, humanity's favorite limited-edition emotional cryptid. According to our algorithm, you move through life with the haunted certainty that you understand everyone better than they understand themselves, which would be impressive if you also understood why you insist on collecting damaged people like limited vinyl.
 
-You are a walking contradiction in expensive inner lighting. Mysterious but desperate to be known, private but somehow deeply available to random strangers having breakdowns on the internet. People tell you their life story after three minutes because you radiate “safe” the way an old cathedral radiates damp guilt. Unfortunately, you mistake this for destiny and not the universal tendency to emotionally dump on whoever makes eye contact with compassion.
+You are a walking contradiction in expensive inner lighting. Mysterious but desperate to be known, private but somehow deeply available to random strangers having breakdowns on the internet. People tell you their life story after three minutes because you radiate "safe" the way an old cathedral radiates damp guilt. Unfortunately, you mistake this for destiny and not the universal tendency to emotionally dump on whoever makes eye contact with compassion.
 
-Your intuition is strong enough to feel psychic, which is great when you are reading a room and terrible when you are reading into a punctuation mark. One dry text and suddenly you’re constructing a seventeen-layer theory about abandonment, emotional drift, and the decline of civilization. You call it insight. Your friends call it “please just ask them directly.”
+Your intuition is strong enough to feel psychic, which is great when you are reading a room and terrible when you are reading into a punctuation mark. One dry text and suddenly you're constructing a seventeen-layer theory about abandonment, emotional drift, and the decline of civilization. You call it insight. Your friends call it "please just ask them directly."
 
-Still, studies suggest every generation needs at least one beautiful weirdo who can sniff out hypocrisy, care too much, and still somehow maintain a Pinterest board of symbolic resilience. That is your burden. Congratulations. You may be exhausted from carrying everybody’s secret pain, but at least you’ll look spiritually expensive while doing it.`,
+Still, studies suggest every generation needs at least one beautiful weirdo who can sniff out hypocrisy, care too much, and still somehow maintain a Pinterest board of symbolic resilience. That is your burden. Congratulations. You may be exhausted from carrying everybody's secret pain, but at least you'll look spiritually expensive while doing it.`,
         roast_name_zh: '殉道先知',
         tagline_zh: '你看透了所有人的鬼话。除了你自己的。',
-        desc_zh: `恭喜你，你是 INFJ，殉道先知，人类最喜欢的限量版情感神秘生物。根据我们的算法，你带着一种“我比别人更了解他们自己”的见鬼的确信感在生活中穿行，如果不是你非要像收集限量黑胶唱片一样收集破碎的人，这本来会很令人敬佩。
+        desc_zh: `恭喜你,你是 INFJ,殉道先知,人类最喜欢的限量版情感神秘生物。根据我们的算法,你带着一种"我比别人更了解他们自己"的见鬼的确信感在生活中穿行,如果不是你非要像收集限量黑胶唱片一样收集破碎的人,这本来会很令人敬佩。
 
-你是一个活在昂贵内心光芒中的矛盾体。神秘却渴望被了解，私密却不知为何对在互联网上崩溃的随机陌生人深度开放。人们在三分钟后就会把他们的人生故事告诉你，因为你散发着“安全”的气息，就像一座古老的大教堂散发着潮湿的罪恶感。不幸的是，你错把这当成了命运，而不是人们喜欢向任何带着同情心与他们对视的人倒苦水的普遍倾向。
+你是一个活在昂贵内心光芒中的矛盾体。神秘却渴望被了解,私密却不知为何对在互联网上崩溃的随机陌生人深度开放。人们在三分钟后就会把他们的人生故事告诉你,因为你散发着"安全"的气息,就像一座古老的大教堂散发着潮湿的罪恶感。不幸的是,你错把这当成了命运,而不是人们喜欢向任何带着同情心与他们对视的人倒苦水的普遍倾向。
 
-你的直觉强到让人觉得像通灵，这在解读房间气氛时很棒，但在解读一个标点符号时就很糟了。一条干巴巴的短信就能让你瞬间构建出一个包含十七层的关于抛弃、情感漂移和文明衰退的理论。你管这叫洞察力。你的朋友管这叫“求求你直接问他们吧”。
+你的直觉强到让人觉得像通灵,这在解读房间气氛时很棒,但在解读一个标点符号时就很糟了。一条干巴巴的短信就能让你瞬间构建出一个包含十七层的关于抛弃、情感漂移和文明衰退的理论。你管这叫洞察力。你的朋友管这叫"求求你直接问他们吧"。
 
-不过，研究表明，每一代人都需要至少一个美丽的怪胎，能嗅出虚伪、过度关心，并且还能不知怎么地维持一个关于象征性韧性的 Pinterest 面板。这就是你的重担。恭喜。你可能会因为背负着所有人的秘密痛苦而疲惫不堪，但至少你在做这件事的时候，看起来精神上很昂贵。`
+不过,研究表明,每一代人都需要至少一个美丽的怪胎,能嗅出虚伪、过度关心,并且还能不知怎么地维持一个关于象征性韧性的 Pinterest 面板。这就是你的重担。恭喜。你可能会因为背负着所有人的秘密痛苦而疲惫不堪,但至少你在做这件事的时候,看起来精神上很昂贵。`
       },
       INFP: {
         code: 'INFP',
+        keyword: 'DREAMER',
+        keyword_zh: '废墟',
         roast_name: 'The Beautiful Disaster',
         tagline: "Your feelings have feelings. And they're all crying.",
         desc: `Congratulations, you are INFP, the Beautiful Disaster, a soft-bodied emotional weather system held together by ideals, playlists, and one catastrophic amount of yearning. Our research confirms you do not merely have feelings, you curate them. You turn heartbreak into atmosphere, disappointment into lore, and mild inconvenience into a private independent film with excellent lighting and no budget.
 
 You insist you hate conflict, yet you are constantly fighting an invisible war between who you are, who you want to be, and who left you on read six hours ago. Practical reality bores and offends you. Why answer emails when you could be experiencing symbolic resonance? Why commit to a plan when your soul is still processing the tragic beauty of a lamp in the rain?
 
-People are drawn to your sincerity because it is increasingly rare in a world full of branding, irony, and men with podcast microphones. Unfortunately, sincerity also makes you easy to wound. One casually rude comment and you’re acting normal on the outside while internally composing a twelve-page indictment of modern cruelty. You are deeply caring, quietly judgmental, and somehow always one disappointing social interaction away from moving to a forest and selling handmade candles under a moon-themed alias.
+People are drawn to your sincerity because it is increasingly rare in a world full of branding, irony, and men with podcast microphones. Unfortunately, sincerity also makes you easy to wound. One casually rude comment and you're acting normal on the outside while internally composing a twelve-page indictment of modern cruelty. You are deeply caring, quietly judgmental, and somehow always one disappointing social interaction away from moving to a forest and selling handmade candles under a moon-themed alias.
 
 Still, the world would be unbearable without a few tender lunatics willing to believe meaning matters. Congratulations. You are wildly impractical, embarrassingly earnest, and somehow more human than the rest of us deserve.`,
         roast_name_zh: '美丽废墟',
         tagline_zh: '你的情绪都有了情绪。而且它们都在哭泣。',
-        desc_zh: `恭喜你，你是 INFP，美丽废墟，一个由理想、歌单和灾难性数量的渴望拼凑而成的柔软的情感天气系统。我们的研究证实，你不仅仅是拥有情绪，你是在策展（curate）它们。你把心碎变成氛围，把失望变成传说，把轻微的不便变成一部拥有绝佳光影且没有预算的私人独立电影。
+        desc_zh: `恭喜你,你是 INFP,美丽废墟,一个由理想、歌单和灾难性数量的渴望拼凑而成的柔软的情感天气系统。我们的研究证实,你不仅仅是拥有情绪,你是在策展(curate)它们。你把心碎变成氛围,把失望变成传说,把轻微的不便变成一部拥有绝佳光影且没有预算的私人独立电影。
 
-你坚称自己讨厌冲突，但你却总是在进行一场隐形战争，交战方是你是谁、你想成为谁，以及六个小时前已读不回你的人。现实的琐碎让你感到无聊和被冒犯。既然你可以体验象征性的共振，为什么要回邮件？既然你的灵魂还在处理雨中路灯的悲剧美，为什么要承诺一个计划？
+你坚称自己讨厌冲突,但你却总是在进行一场隐形战争,交战方是你是谁、你想成为谁,以及六个小时前已读不回你的人。现实的琐碎让你感到无聊和被冒犯。既然你可以体验象征性的共振,为什么要回邮件?既然你的灵魂还在处理雨中路灯的悲剧美,为什么要承诺一个计划?
 
-人们被你的真诚所吸引，因为在这个充斥着品牌营销、讽刺和拿着播客麦克风的男人的世界里，真诚越来越罕见。不幸的是，真诚也让你很容易受伤。一句不经意的粗鲁评论就能让你外表看起来正常，内心却在起草一份长达十二页的对现代残酷的控诉书。你极度关心他人，默默评判他人，而且总是距离搬到森林里用月亮主题的化名卖手工蜡烛只差一次令人失望的社交互动。
+人们被你的真诚所吸引,因为在这个充斥着品牌营销、讽刺和拿着播客麦克风的男人的世界里,真诚越来越罕见。不幸的是,真诚也让你很容易受伤。一句不经意的粗鲁评论就能让你外表看起来正常,内心却在起草一份长达十二页的对现代残酷的控诉书。你极度关心他人,默默评判他人,而且总是距离搬到森林里用月亮主题的化名卖手工蜡烛只差一次令人失望的社交互动。
 
-不过，如果没有几个愿意相信意义存在的温柔疯子，这个世界将无法忍受。恭喜。你极不切实际，尴尬地真诚，并且不知怎么的，比我们其余人应得的更像个人类。`
+不过,如果没有几个愿意相信意义存在的温柔疯子,这个世界将无法忍受。恭喜。你极不切实际,尴尬地真诚,并且不知怎么的,比我们其余人应得的更像个人类。`
       },
       ENFJ: {
         code: 'ENFJ',
+        keyword: 'DICTATOR',
+        keyword_zh: '独裁者',
         roast_name: 'The Benevolent Dictator',
         tagline: "You care SO much it's actually terrifying.",
-        desc: `Congratulations, you are ENFJ, the Benevolent Dictator, a charisma-powered intervention with excellent posture. According to our findings, you possess the deeply unsettling ability to enter a room, assess the emotional weather, fix the seating arrangement, and accidentally become everyone’s life coach before appetizers arrive. You don’t just care about people. You aggressively care at them.
+        desc: `Congratulations, you are ENFJ, the Benevolent Dictator, a charisma-powered intervention with excellent posture. According to our findings, you possess the deeply unsettling ability to enter a room, assess the emotional weather, fix the seating arrangement, and accidentally become everyone's life coach before appetizers arrive. You don't just care about people. You aggressively care at them.
 
-You are beloved because you make others feel seen, encouraged, and mildly managed. Somewhere between your warmth and your intensity lies the truth: you genuinely want people to thrive, but preferably on a timeline that reflects well on your guidance. You say “I just want what’s best for you” with such conviction that nobody notices you have already drafted the improvement plan, the accountability check-in, and the inspirational closing statement.
+You are beloved because you make others feel seen, encouraged, and mildly managed. Somewhere between your warmth and your intensity lies the truth: you genuinely want people to thrive, but preferably on a timeline that reflects well on your guidance. You say "I just want what's best for you" with such conviction that nobody notices you have already drafted the improvement plan, the accountability check-in, and the inspirational closing statement.
 
-Your social intelligence is frightening. You can detect a weird vibe before it fully loads. But because you’re so attuned to others, you often overestimate your right to intervene in their nonsense. Not every bad decision is a cry for help. Sometimes people just want to ruin their life in peace. You should try it sometime. Could be liberating.
+Your social intelligence is frightening. You can detect a weird vibe before it fully loads. But because you're so attuned to others, you often overestimate your right to intervene in their nonsense. Not every bad decision is a cry for help. Sometimes people just want to ruin their life in peace. You should try it sometime. Could be liberating.
 
-Still, civilizations are held together by exactly one category of overinvested extrovert who can rally morale without becoming a cult leader, most of the time. That’s you. Congratulations. You’re caring, commanding, and one group chat away from becoming a nonprofit with emotional surveillance capabilities.`,
+Still, civilizations are held together by exactly one category of overinvested extrovert who can rally morale without becoming a cult leader, most of the time. That's you. Congratulations. You're caring, commanding, and one group chat away from becoming a nonprofit with emotional surveillance capabilities.`,
         roast_name_zh: '仁慈的独裁者',
-        tagline_zh: '你太在乎了，以至于让人觉得有点恐怖。',
-        desc_zh: `恭喜你，你是 ENFJ，仁慈的独裁者，一个姿态极佳的、靠个人魅力驱动的干预行动。根据我们的调查结果，你拥有令人极度不安的能力：进入一个房间，评估情绪天气，调整座位安排，并在开胃菜上来之前意外地成为所有人的生活教练。你不仅仅是关心别人。你是向他们发起攻击式关心。
+        tagline_zh: '你太在乎了,以至于让人觉得有点恐怖。',
+        desc_zh: `恭喜你,你是 ENFJ,仁慈的独裁者,一个姿态极佳的、靠个人魅力驱动的干预行动。根据我们的调查结果,你拥有令人极度不安的能力:进入一个房间,评估情绪天气,调整座位安排,并在开胃菜上来之前意外地成为所有人的生活教练。你不仅仅是关心别人。你是向他们发起攻击式关心。
 
-你之所以受人喜爱，是因为你让别人感到被看见、被鼓励，并被轻微地管理着。介于你的温暖和你的强烈之间，真相是：你真心希望人们茁壮成长，但最好是在一个能很好地反映你指导水平的时间表上。你带着如此坚定的信念说“我只是想为了你好”，以至于没人注意到你已经起草了改进计划、问责签到表，以及鼓舞人心的总结陈词。
+你之所以受人喜爱,是因为你让别人感到被看见、被鼓励,并被轻微地管理着。介于你的温暖和你的强烈之间,真相是:你真心希望人们茁壮成长,但最好是在一个能很好地反映你指导水平的时间表上。你带着如此坚定的信念说"我只是想为了你好",以至于没人注意到你已经起草了改进计划、问责签到表,以及鼓舞人心的总结陈词。
 
-你的社交智商高得吓人。你能在一种奇怪的氛围完全加载之前就察觉到它。但因为你对他人的感知太敏锐，你经常高估了自己干预他们破事的权利。不是每一个糟糕的决定都是在寻求帮助。有时候人们只是想在平静中毁掉自己的人生。你有时也该试试。说不定会很解脱。
+你的社交智商高得吓人。你能在一种奇怪的氛围完全加载之前就察觉到它。但因为你对他人的感知太敏锐,你经常高估了自己干预他们破事的权利。不是每一个糟糕的决定都是在寻求帮助。有时候人们只是想在平静中毁掉自己的人生。你有时也该试试。说不定会很解脱。
 
-不过，文明是被确切地一种过度投入的外向者维系在一起的，这种人能鼓舞士气又不会变成邪教头子——大多数时候。那就是你。恭喜。你充满关爱，发号施令，并且距离成为一家拥有情感监控能力的非营利组织只差一个群聊。`
+不过,文明是被确切地一种过度投入的外向者维系在一起的,这种人能鼓舞士气又不会变成邪教头子--大多数时候。那就是你。恭喜。你充满关爱,发号施令,并且距离成为一家拥有情感监控能力的非营利组织只差一个群聊。`
       },
       ENFP: {
         code: 'ENFP',
+        keyword: 'CHAOS',
+        keyword_zh: '多动症',
         roast_name: 'The Golden Retriever on Adderall',
         tagline: "You have 47 hobbies and have finished none of them.",
-        desc: `Congratulations, you are ENFP, the Golden Retriever on Adderall, a confetti cannon full of potential with no adult supervision. Our analysis shows you are powered by excitement, affection, and whatever chemical imbalance makes a person text “I have an idea” at 2:13 a.m. and then start a candle business, a podcast, and a ceramics era before breakfast.
+        desc: `Congratulations, you are ENFP, the Golden Retriever on Adderall, a confetti cannon full of potential with no adult supervision. Our analysis shows you are powered by excitement, affection, and whatever chemical imbalance makes a person text "I have an idea" at 2:13 a.m. and then start a candle business, a podcast, and a ceramics era before breakfast.
 
 You are magnetic because your enthusiasm feels like sunlight that forgot to pay rent. People love being around you. You make mundane life feel briefly cinematic. The issue is that your attention span has the moral integrity of a startup founder. You fall in love with possibilities, not maintenance. Inspiration hits, you sprint, you charm, you overshare, you disappear into a fresh obsession, and suddenly the old project is in a graveyard of abandoned Google Docs holding hands with your ukulele phase.
 
-Emotionally, you are sincere to the point of chaos. You want depth, wonder, chemistry, meaning, and maybe matching playlists by the third conversation. This is adorable until it becomes a hostage situation for calmer nervous systems. You call it following your heart. Your friends call it “oh no, they’re having another personal rebrand.”
+Emotionally, you are sincere to the point of chaos. You want depth, wonder, chemistry, meaning, and maybe matching playlists by the third conversation. This is adorable until it becomes a hostage situation for calmer nervous systems. You call it following your heart. Your friends call it "oh no, they're having another personal rebrand."
 
 Still, studies show the species would go extinct without a few deliriously hopeful maniacs willing to believe new people, new art, and new versions of themselves are still worth chasing. Congratulations. You are exhausting, radiant, and somehow one of the few people keeping cynicism from becoming the default setting.`,
         roast_name_zh: '嗑了药的金毛',
-        tagline_zh: '你有 47 个爱好，但一个都没坚持下来。',
-        desc_zh: `恭喜你，你是 ENFP，嗑了药的金毛，一个装满潜力和五彩纸屑但没有成年人监管的礼炮。我们的分析表明，你的动力来源于兴奋、喜爱，以及某种让你在凌晨 2:13 发短信说“我有个主意”，然后在早餐前就开始卖蜡烛、做播客和进入陶瓷时代的化学失衡。
+        tagline_zh: '你有 47 个爱好,但一个都没坚持下来。',
+        desc_zh: `恭喜你,你是 ENFP,嗑了药的金毛,一个装满潜力和五彩纸屑但没有成年人监管的礼炮。我们的分析表明,你的动力来源于兴奋、喜爱,以及某种让你在凌晨 2:13 发短信说"我有个主意",然后在早餐前就开始卖蜡烛、做播客和进入陶瓷时代的化学失衡。
 
-你很有吸引力，因为你的热情就像忘了交房租的阳光。人们喜欢和你在一起。你让平凡的生活短暂地有了电影感。问题在于，你的注意力持续时间只有初创公司创始人的道德水平。你爱上的是可能性，而不是维护。灵感袭来，你冲刺、你施展魅力、你过度分享、你消失在一个新的痴迷中，突然间，旧项目就和一个拿着尤克里里的阶段一起躺在了被遗弃的 Google Docs 的坟墓里。
+你很有吸引力,因为你的热情就像忘了交房租的阳光。人们喜欢和你在一起。你让平凡的生活短暂地有了电影感。问题在于,你的注意力持续时间只有初创公司创始人的道德水平。你爱上的是可能性,而不是维护。灵感袭来,你冲刺、你施展魅力、你过度分享、你消失在一个新的痴迷中,突然间,旧项目就和一个拿着尤克里里的阶段一起躺在了被遗弃的 Google Docs 的坟墓里。
 
-在情感上，你真诚到了混乱的地步。你渴望深度、奇迹、化学反应、意义，也许在第三次谈话时就想要匹配的网易云歌单。这很可爱，直到它对那些更平静的神经系统来说变成了一场劫持。你管这叫听从内心的声音。你的朋友管这叫“哦不，他们又要进行个人品牌重塑了”。
+在情感上,你真诚到了混乱的地步。你渴望深度、奇迹、化学反应、意义,也许在第三次谈话时就想要匹配的网易云歌单。这很可爱,直到它对那些更平静的神经系统来说变成了一场劫持。你管这叫听从内心的声音。你的朋友管这叫"哦不,他们又要进行个人品牌重塑了"。
 
-不过，研究表明，如果没有几个狂热的、充满希望的疯子愿意相信新人、新艺术和新版本的自己依然值得追寻，这个物种早就灭绝了。恭喜。你让人筋疲力尽，光芒四射，而且不知怎么的，你是少数几个阻止愤世嫉俗成为默认设置的人之一。`
+不过,研究表明,如果没有几个狂热的、充满希望的疯子愿意相信新人、新艺术和新版本的自己依然值得追寻,这个物种早就灭绝了。恭喜。你让人筋疲力尽,光芒四射,而且不知怎么的,你是少数几个阻止愤世嫉俗成为默认设置的人之一。`
       },
       ISTJ: {
         code: 'ISTJ',
+        keyword: 'BUREAUCRAT',
+        keyword_zh: '官僚',
         roast_name: 'The Human Filing Cabinet',
         tagline: "You've never had a spontaneous moment in your entire life.",
-        desc: `Congratulations, you are ISTJ, the Human Filing Cabinet, a person so structurally sound it makes the rest of us feel like loose screws in a ziplock bag. According to our research, you were placed on Earth as a quality-control measure. Where others bring vibes, you bring receipts. Where others bring innovation, you bring the life-saving question, “did anyone actually read the instructions?”
+        desc: `Congratulations, you are ISTJ, the Human Filing Cabinet, a person so structurally sound it makes the rest of us feel like loose screws in a ziplock bag. According to our research, you were placed on Earth as a quality-control measure. Where others bring vibes, you bring receipts. Where others bring innovation, you bring the life-saving question, "did anyone actually read the instructions?"
 
-You value duty, reliability, and competence, which is noble and also deeply boring in a way that should qualify as a mineral. You don’t panic easily because you prepared for most outcomes and judged the unprepared in advance. You have the thrilling emotional range of a tax document, but to your credit, tax documents do eventually get things done. People take you for granted because you are so steady they forget steadiness is a miracle in a culture currently run by grifters, burnout, and ring lights.
+You value duty, reliability, and competence, which is noble and also deeply boring in a way that should qualify as a mineral. You don't panic easily because you prepared for most outcomes and judged the unprepared in advance. You have the thrilling emotional range of a tax document, but to your credit, tax documents do eventually get things done. People take you for granted because you are so steady they forget steadiness is a miracle in a culture currently run by grifters, burnout, and ring lights.
 
 Your flaw is that you mistake familiarity for virtue. Just because something worked in 2016 does not mean it deserves another decade. You can be so suspicious of novelty that innovation has to sneak into your life wearing a fake mustache and a compliance badge. Romantically, you are loyal, practical, and emotionally subtle enough to make a brick wall seem performative.
 
 Still, when the group project is collapsing and everyone else is roleplaying emotional weather, you are there, quietly competent, dragging civilization uphill by the collar. Congratulations. You may not be fun, but you are the reason fun has electricity.`,
         roast_name_zh: '人形文件柜',
         tagline_zh: '你这辈子就没冲动过哪怕一秒。',
-        desc_zh: `恭喜你，你是 ISTJ，人形文件柜。你这个人结构如此稳固，以至于让我们其余的人感觉自己就像自封袋里松动的螺丝钉。根据我们的研究，你被放在地球上是为了作为一项质量控制措施。别人带来的是氛围（vibes），你带来的是发票和收据。别人带来的是创新，你带来的是救命的问题：“有人真的看过说明书吗？”
+        desc_zh: `恭喜你,你是 ISTJ,人形文件柜。你这个人结构如此稳固,以至于让我们其余的人感觉自己就像自封袋里松动的螺丝钉。根据我们的研究,你被放在地球上是为了作为一项质量控制措施。别人带来的是氛围(vibes),你带来的是发票和收据。别人带来的是创新,你带来的是救命的问题:"有人真的看过说明书吗?"
 
-你看重责任、可靠性和能力，这很高尚，但也无聊透顶，其无聊程度应该被归类为某种矿物质。你不容易恐慌，因为你已经为大多数结果做好了准备，并提前对那些没做好准备的人进行了评判。你的情感波动范围和报税单一样令人兴奋，但值得称赞的是，报税单最终确实能把事情办妥。人们觉得你理所当然，因为你太稳定了，他们忘记了在当前这个由骗子、过劳和补光灯主导的文化中，稳定本身就是一个奇迹。
+你看重责任、可靠性和能力,这很高尚,但也无聊透顶,其无聊程度应该被归类为某种矿物质。你不容易恐慌,因为你已经为大多数结果做好了准备,并提前对那些没做好准备的人进行了评判。你的情感波动范围和报税单一样令人兴奋,但值得称赞的是,报税单最终确实能把事情办妥。人们觉得你理所当然,因为你太稳定了,他们忘记了在当前这个由骗子、过劳和补光灯主导的文化中,稳定本身就是一个奇迹。
 
-你的缺点在于，你错把熟悉当成了美德。仅仅因为某样东西在 2016 年管用，并不意味着它值得再用十年。你对新鲜事物如此怀疑，以至于创新必须戴着假胡子、挂着合规证章才能潜入你的生活。在恋爱中，你忠诚、务实，并且情感内敛到能让一堵砖墙看起来都像在表演。
+你的缺点在于,你错把熟悉当成了美德。仅仅因为某样东西在 2016 年管用,并不意味着它值得再用十年。你对新鲜事物如此怀疑,以至于创新必须戴着假胡子、挂着合规证章才能潜入你的生活。在恋爱中,你忠诚、务实,并且情感内敛到能让一堵砖墙看起来都像在表演。
 
-不过，当小组项目快要崩溃，其他所有人都在角色扮演情感天气时，你却在那里，默默地能干着，揪着衣领把文明拖上山。恭喜。你可能不好玩，但你是让那些好玩的事情能通上电的原因。`
+不过,当小组项目快要崩溃,其他所有人都在角色扮演情感天气时,你却在那里,默默地能干着,揪着衣领把文明拖上山。恭喜。你可能不好玩,但你是让那些好玩的事情能通上电的原因。`
       },
       ISFJ: {
         code: 'ISFJ',
+        keyword: 'DOORMAT',
+        keyword_zh: '老好人',
         roast_name: 'The Invisible Hero',
         tagline: "You did everything. Nobody noticed. You're fine. (You're not fine.)",
         desc: `Congratulations, you are ISFJ, the Invisible Hero, a tender infrastructure project disguised as a person. Our algorithm found that you are the type most likely to remember birthdays, emotional patterns, dietary restrictions, and the exact moment everyone else started taking you for granted. You keep life stitched together while louder people take credit and call themselves visionaries.
 
 You are kind in the old-fashioned sense, not the online sense where people post a pastel infographic and then treat baristas like enemy combatants. You show up, notice details, help quietly, and somehow still apologize for existing. This is touching, but it also means you spend an alarming amount of time volunteering to carry emotional groceries for people who can absolutely lift with their own hands.
 
-The tragedy of your life is that you think love must be earned through usefulness. So you care harder, anticipate more, endure longer, and say “it’s okay” when it very clearly is not okay. Your resentment doesn’t explode. It ferments. One day someone will leave one dirty cup in the sink and you’ll mentally replay every unthanked sacrifice since middle school.
+The tragedy of your life is that you think love must be earned through usefulness. So you care harder, anticipate more, endure longer, and say "it's okay" when it very clearly is not okay. Your resentment doesn't explode. It ferments. One day someone will leave one dirty cup in the sink and you'll mentally replay every unthanked sacrifice since middle school.
 
 Still, studies show society runs on exactly this kind of unspectacular devotion. You are the human equivalent of warm lights in a storm, comforting, dependable, and criminally underappreciated. Congratulations. You may never demand the spotlight, but when the room goes dark, everyone notices who had been holding the lamp.`,
         roast_name_zh: '隐形英雄',
-        tagline_zh: '你做了一切。没人注意到。你觉得没事。（你明明有事。）',
-        desc_zh: `恭喜你，你是 ISFJ，隐形英雄，一个伪装成人类的温柔基建项目。我们的算法发现，你是最有可能记住生日、情绪模式、饮食禁忌以及其他所有人开始把你当成理所当然的确切时刻的类型。你把生活缝合在一起，而更吵闹的人却抢了功劳，并称自己为有远见的人。
+        tagline_zh: '你做了一切。没人注意到。你觉得没事。(你明明有事。)',
+        desc_zh: `恭喜你,你是 ISFJ,隐形英雄,一个伪装成人类的温柔基建项目。我们的算法发现,你是最有可能记住生日、情绪模式、饮食禁忌以及其他所有人开始把你当成理所当然的确切时刻的类型。你把生活缝合在一起,而更吵闹的人却抢了功劳,并称自己为有远见的人。
 
-你的善良是老派的那种，不是那种发个马卡龙色信息图然后在现实中把咖啡师当敌军对待的网上那种。你出现，注意到细节，默默帮忙，然后不知怎么地还在为自己的存在而道歉。这很感人，但也意味着你花在为那些明明可以自己提东西的人提情感杂货上的时间，达到了令人担忧的程度。
+你的善良是老派的那种,不是那种发个马卡龙色信息图然后在现实中把咖啡师当敌军对待的网上那种。你出现,注意到细节,默默帮忙,然后不知怎么地还在为自己的存在而道歉。这很感人,但也意味着你花在为那些明明可以自己提东西的人提情感杂货上的时间,达到了令人担忧的程度。
 
-你生活的悲剧在于，你认为爱必须通过变得有用（usefulness）来赢得。所以你更加努力地关心、预判更多、忍受更久，并在明明非常不没事的时候说“没关系”。你的怨恨不会爆炸。它发酵。总有一天，有人会把一个脏杯子留在水槽里，然后你会在脑海中重播自初中以来每一次未被感谢的牺牲。
+你生活的悲剧在于,你认为爱必须通过变得有用(usefulness)来赢得。所以你更加努力地关心、预判更多、忍受更久,并在明明非常不没事的时候说"没关系"。你的怨恨不会爆炸。它发酵。总有一天,有人会把一个脏杯子留在水槽里,然后你会在脑海中重播自初中以来每一次未被感谢的牺牲。
 
-不过，研究表明，社会正是靠这种不起眼的奉献运转的。你就像暴风雨中的暖光，令人舒适、值得信赖，并且被犯罪般地严重低估了。恭喜。你可能永远不会要求聚光灯，但当房间变暗时，每个人都会注意到是谁一直举着灯。`
+不过,研究表明,社会正是靠这种不起眼的奉献运转的。你就像暴风雨中的暖光,令人舒适、值得信赖,并且被犯罪般地严重低估了。恭喜。你可能永远不会要求聚光灯,但当房间变暗时,每个人都会注意到是谁一直举着灯。`
       },
       ESTJ: {
         code: 'ESTJ',
+        keyword: 'BOSS',
+        keyword_zh: '老板',
         roast_name: 'The Self-Appointed Manager',
         tagline: 'Nobody elected you leader but here we are.',
-        desc: `Congratulations, you are ESTJ, the Self-Appointed Manager, an upright citizen powered by competence, cortisol, and the profound conviction that other people are doing it wrong. According to our proprietary analysis, you don’t walk into disorder, you arrive offended by it. Your first instinct in any chaotic situation is to assign roles, demand clarity, and wonder why everyone else has the resting decision-making face of livestock.
+        desc: `Congratulations, you are ESTJ, the Self-Appointed Manager, an upright citizen powered by competence, cortisol, and the profound conviction that other people are doing it wrong. According to our proprietary analysis, you don't walk into disorder, you arrive offended by it. Your first instinct in any chaotic situation is to assign roles, demand clarity, and wonder why everyone else has the resting decision-making face of livestock.
 
 You are immensely useful, which is why people tolerate the tiny authoritarian hiding under your sensible shoes. You respect systems because systems produce results. You respect rules because rules keep idiots from turning every simple task into participatory theater. The issue, of course, is that you often assume your way is not just efficient but morally superior. This is how you end up treating a weekend trip like a military operation and a family dinner like a status meeting with pie.
 
@@ -1179,161 +1243,175 @@ Emotionally, you are not as cold as people think. You just package affection in 
 
 Still, when the wifi fails, the timeline slips, and everybody starts making excuses in six therapeutic dialects, you are the one who restores order with terrifying ease. Congratulations. You are exhausting, efficient, and the reason some disasters remain merely bad days instead of documentaries.`,
         roast_name_zh: '自封的经理',
-        tagline_zh: '没人选你当领导，但事已至此。',
-        desc_zh: `恭喜你，你是 ESTJ，自封的经理。你是那个在一场没人要求有规则的聚会上开始分发打印好的议程表的人。我们的数据证实，你从不建议任何事，你只是通知现实它将如何被重组。对你来说，“合作”只是一个礼貌用语，意思是“听我指挥直到你学会正确的方法”。
+        tagline_zh: '没人选你当领导,但事已至此。',
+        desc_zh: `恭喜你,你是 ESTJ,自封的经理。你是那个在一场没人要求有规则的聚会上开始分发打印好的议程表的人。我们的数据证实,你从不建议任何事,你只是通知现实它将如何被重组。对你来说,"合作"只是一个礼貌用语,意思是"听我指挥直到你学会正确的方法"。
 
-你是一个能搞定事情的机器，这对经济来说是绝佳的，但对任何想在不被当成关键绩效指标评估的情况下和你吃顿晚餐的人来说就是个噩梦了。你把所有问题，包括情感问题，都视为逻辑上的疏忽，可以通过更严格的时间表来解决。当有人向你发泄时，他们是在寻找同情，但他们得到的是一份项目规划和一套关于他们为什么一开始就搞砸了的尖锐的幻灯片。
+你是一个能搞定事情的机器,这对经济来说是绝佳的,但对任何想在不被当成关键绩效指标评估的情况下和你吃顿晚餐的人来说就是个噩梦了。你把所有问题,包括情感问题,都视为逻辑上的疏忽,可以通过更严格的时间表来解决。当有人向你发泄时,他们是在寻找同情,但他们得到的是一份项目规划和一套关于他们为什么一开始就搞砸了的尖锐的幻灯片。
 
-令人恼火的是，你几乎总是对的。你知道这一点，这也是为什么在每种可能的情况下，你都会像一辆装配着扩音器的推土机一样接过控制权。但有时人们需要的不是优化，他们需要你停止把休闲时光当成一场军事行动来微观管理。
+令人恼火的是,你几乎总是对的。你知道这一点,这也是为什么在每种可能的情况下,你都会像一辆装配着扩音器的推土机一样接过控制权。但有时人们需要的不是优化,他们需要你停止把休闲时光当成一场军事行动来微观管理。
 
-尽管你可能像职场版的老古板，但当火车脱轨、所有直觉型的人都在思考废墟的美感时，你是那个组织救援队的人。恭喜。你让大家保持了整齐的队伍，尽管其中一半人可能正在偷偷翻白眼。`
+尽管你可能像职场版的老古板,但当火车脱轨、所有直觉型的人都在思考废墟的美感时,你是那个组织救援队的人。恭喜。你让大家保持了整齐的队伍,尽管其中一半人可能正在偷偷翻白眼。`
       },
       ESFJ: {
         code: 'ESFJ',
+        keyword: 'SPY',
+        keyword_zh: '间谍',
         roast_name: 'The Emotional Intelligence Spy',
         tagline: "You care about everyone's feelings... for intelligence gathering.",
-        desc: `Congratulations, you are ESFJ, the Emotional Intelligence Spy, a social operator so refined you can detect tension from three rooms away and still ask if anyone needs more napkins. Our data suggests you are fueled by connection, usefulness, and the exquisite drama of being the person who knows what’s really going on before the group chat admits it.
+        desc: `Congratulations, you are ESFJ, the Emotional Intelligence Spy, a social operator so refined you can detect tension from three rooms away and still ask if anyone needs more napkins. Our data suggests you are fueled by connection, usefulness, and the exquisite drama of being the person who knows what's really going on before the group chat admits it.
 
-You are warm, welcoming, and absurdly tuned in to interpersonal weather. People feel safe around you because you remember details and make belonging feel effortless. The darker truth is that your generosity comes with x-ray vision. You know who’s upset, who’s pretending, who’s drifting, and who said “I’m fine” with the emotional texture of wet cardboard. This makes you either the glue of the community or the CIA of brunch.
+You are warm, welcoming, and absurdly tuned in to interpersonal weather. People feel safe around you because you remember details and make belonging feel effortless. The darker truth is that your generosity comes with x-ray vision. You know who's upset, who's pretending, who's drifting, and who said "I'm fine" with the emotional texture of wet cardboard. This makes you either the glue of the community or the CIA of brunch.
 
-Your greatest flaw is your need to be appreciated for caring. When love is returned, you bloom. When it isn’t, you start keeping mental receipts in embossed script. You can become weirdly controlling in the name of harmony, which is such an elegant form of meddling it almost deserves an award. Not every silence is a problem to solve. Sometimes people are just chewing.
+Your greatest flaw is your need to be appreciated for caring. When love is returned, you bloom. When it isn't, you start keeping mental receipts in embossed script. You can become weirdly controlling in the name of harmony, which is such an elegant form of meddling it almost deserves an award. Not every silence is a problem to solve. Sometimes people are just chewing.
 
-Still, our studies conclude that civilization needs a few hyper-competent hosts to keep social life from devolving into feral seating. That’s you. Congratulations. You are lovely, meddlesome, and one casserole away from running the neighborhood through vibes and soft power.`,
+Still, our studies conclude that civilization needs a few hyper-competent hosts to keep social life from devolving into feral seating. That's you. Congratulations. You are lovely, meddlesome, and one casserole away from running the neighborhood through vibes and soft power.`,
         roast_name_zh: '情商间谍',
-        tagline_zh: '你在乎每个人的感受……为了收集情报。',
-        desc_zh: `恭喜你，你是 ESFJ，情商间谍，一个带着自制砂锅菜和战术级人际监视系统的社交网络。根据我们的分析，你拥有超自然的第六感，能知道谁在生谁的气，并觉得有道义责任把自己插进两人的中间，以便“帮忙”。
+        tagline_zh: '你在乎每个人的感受......为了收集情报。',
+        desc_zh: `恭喜你,你是 ESFJ,情商间谍,一个带着自制砂锅菜和战术级人际监视系统的社交网络。根据我们的分析,你拥有超自然的第六感,能知道谁在生谁的气,并觉得有道义责任把自己插进两人的中间,以便"帮忙"。
 
-你真的相信你只是在做一个好人。这就是让你如此危险的原因。你把八卦当成了建立联系，把干预当成了支持。你知道所有人的事，因为他们都告诉你了，因为你有一种让别人卸下防备的温暖光环，这就好像中情局特工假扮成了邻家阿姨。你不只是记住生日；你记住某人的前任喜欢什么蛋糕，这样如果需要的话，你就能在日后部署这段信息进行心理打击。
+你真的相信你只是在做一个好人。这就是让你如此危险的原因。你把八卦当成了建立联系,把干预当成了支持。你知道所有人的事,因为他们都告诉你了,因为你有一种让别人卸下防备的温暖光环,这就好像中情局特工假扮成了邻家阿姨。你不只是记住生日;你记住某人的前任喜欢什么蛋糕,这样如果需要的话,你就能在日后部署这段信息进行心理打击。
 
-你最大的恐惧就是不被喜欢，这导致你在情感劳动上过度承诺，到了疯狂的程度。如果你办了一场派对，而某个人看起来只有 80% 的开心，你会认为这是一次个人层面的失败。你会在他们身上盘旋，给他们端零食，直到他们要么屈服并假装开心，要么逃跑。
+你最大的恐惧就是不被喜欢,这导致你在情感劳动上过度承诺,到了疯狂的程度。如果你办了一场派对,而某个人看起来只有 80% 的开心,你会认为这是一次个人层面的失败。你会在他们身上盘旋,给他们端零食,直到他们要么屈服并假装开心,要么逃跑。
 
-然而，我们确实需要你。如果没有你不断地强制我们聚在一起，并在我们试图隐居时对我们进行情感敲诈，我们可能几个月都见不到彼此。恭喜。你维系着社会的运转，尽管有一半时间我们并不确定你是不是在顺便搜集我们的把柄。`
+然而,我们确实需要你。如果没有你不断地强制我们聚在一起,并在我们试图隐居时对我们进行情感敲诈,我们可能几个月都见不到彼此。恭喜。你维系着社会的运转,尽管有一半时间我们并不确定你是不是在顺便搜集我们的把柄。`
       },
       ISTP: {
         code: 'ISTP',
+        keyword: 'FERAL',
+        keyword_zh: '野人',
         roast_name: 'The Feral Mechanic',
         tagline: "You'd rather fix a carburetor than have a conversation about feelings.",
-        desc: `Congratulations, you are ISTP, the Feral Mechanic, a low-maintenance chaos goblin with suspiciously competent hands. Our system reports that you approach life like a malfunctioning engine, if it can be understood, taken apart, and reassembled, then it is less terrifying than a human who says “we need to talk.” Physical reality makes sense to you. Emotional reality feels like a software update nobody consented to.
+        desc: `Congratulations, you are ISTP, the Feral Mechanic, a low-maintenance chaos goblin with suspiciously competent hands. Our system reports that you approach life like a malfunctioning engine, if it can be understood, taken apart, and reassembled, then it is less terrifying than a human who says "we need to talk." Physical reality makes sense to you. Emotional reality feels like a software update nobody consented to.
 
 You are cool under pressure in a way that infuriates louder people. While everyone else is spiraling, you are calmly assessing damage with the expression of someone deciding whether the problem requires a wrench or indifference. This makes you competent, attractive, and emotionally evasive enough to qualify as wildlife. You value freedom, skill, and direct experience. You despise clinginess, inefficiency, and conversations with more adjectives than necessary.
 
-The problem is that your detachment can curdle into neglect. You think giving people space is respectful. Sometimes it’s just you ghosting accountability with premium branding. You’re so allergic to control that even intimacy can feel like administrative overhead. Still, when things go sideways, everybody suddenly discovers they love your weird little monk-gremlin energy.
+The problem is that your detachment can curdle into neglect. You think giving people space is respectful. Sometimes it's just you ghosting accountability with premium branding. You're so allergic to control that even intimacy can feel like administrative overhead. Still, when things go sideways, everybody suddenly discovers they love your weird little monk-gremlin energy.
 
-Studies show civilization survives partly because a few capable weirdos can fix machines, stay calm, and avoid making every situation about their feelings. That’s you. Congratulations. You may be emotionally unavailable, but at least you can probably build a shelf without a spiritual crisis.`,
+Studies show civilization survives partly because a few capable weirdos can fix machines, stay calm, and avoid making every situation about their feelings. That's you. Congratulations. You may be emotionally unavailable, but at least you can probably build a shelf without a spiritual crisis.`,
         roast_name_zh: '野生修理工',
-        tagline_zh: '你宁愿修化油器，也不愿谈论感情。',
-        desc_zh: `恭喜你，你是 ISTP，野生修理工，你更像一把多功能工具而非人类。我们的实验室确认，你拥有一种猫一样的超脱感，你会在房间里晃悠，修好坏掉的微波炉，然后一言不发地离开。如果有人试图因为这事抱你，你可能会嘶嘶叫。
+        tagline_zh: '你宁愿修化油器,也不愿谈论感情。',
+        desc_zh: `恭喜你,你是 ISTP,野生修理工,你更像一把多功能工具而非人类。我们的实验室确认,你拥有一种猫一样的超脱感,你会在房间里晃悠,修好坏掉的微波炉,然后一言不发地离开。如果有人试图因为这事抱你,你可能会嘶嘶叫。
 
-你非常注重实际，这本是件好事，但你的实际往往延伸到了情感领域，导致你对待人就像对待需要上润滑油或被丢弃的机器一样。你对理论对话的容忍度为零。如果一件事不能被触摸、驾驶或拆解，你就在 45 秒内失去兴趣了。这让你在浪漫关系中变成了一个难以捉摸的谜，你的伴侣们常常疑惑你是不是真的爱他们，还是只是没找到换掉他们的扳手。
+你非常注重实际,这本是件好事,但你的实际往往延伸到了情感领域,导致你对待人就像对待需要上润滑油或被丢弃的机器一样。你对理论对话的容忍度为零。如果一件事不能被触摸、驾驶或拆解,你就在 45 秒内失去兴趣了。这让你在浪漫关系中变成了一个难以捉摸的谜,你的伴侣们常常疑惑你是不是真的爱他们,还是只是没找到换掉他们的扳手。
 
-你在危机中很冷静，这是因为危机通常只需要反应，不需要长时间的眼神交流。你渴望肾上腺素和独立，这意味着你的理想周末是独自去爬一座可能导致骨折的山，而不是回哪怕一条“最近好吗”的短信。
+你在危机中很冷静,这是因为危机通常只需要反应,不需要长时间的眼神交流。你渴望肾上腺素和独立,这意味着你的理想周末是独自去爬一座可能导致骨折的山,而不是回哪怕一条"最近好吗"的短信。
 
-即便如此，当世界崩塌，所有那些高谈阔论的人都在不知所措时，你是那个默默启动备用发电机的人。恭喜。你是一个在情感上无法接近的坏蛋，我们会在丧尸爆发时紧紧跟着你。`
+即便如此,当世界崩塌,所有那些高谈阔论的人都在不知所措时,你是那个默默启动备用发电机的人。恭喜。你是一个在情感上无法接近的坏蛋,我们会在丧尸爆发时紧紧跟着你。`
       },
       ISFP: {
         code: 'ISFP',
+        keyword: 'AESTHETIC',
+        keyword_zh: '美学',
         roast_name: 'The Melancholy Artist',
         tagline: 'Your aesthetic is impeccable. Your life? A beautiful wreck.',
         desc: `Congratulations, you are ISFP, the Melancholy Artist, a delicately curated mood board wearing shoes. Our findings suggest you move through the world with a secret soundtrack, excellent taste, and a profound aversion to being told what to do by anyone less stylish than your browser history. You are sensitive, observant, and somehow capable of making emotional ruin look soft and expensive.
 
-You care deeply, but not loudly. You’d rather express yourself through details, color, music, and one devastatingly specific outfit than explain your feelings in plain English like a taxpayer. This makes you magnetic and impossible to pin down. People assume you’re chill because you’re quiet. In reality, you are feeling thirty-seven things at once and hiding them behind good lighting.
+You care deeply, but not loudly. You'd rather express yourself through details, color, music, and one devastatingly specific outfit than explain your feelings in plain English like a taxpayer. This makes you magnetic and impossible to pin down. People assume you're chill because you're quiet. In reality, you are feeling thirty-seven things at once and hiding them behind good lighting.
 
 Your greatest weakness is avoiding structure like it personally insulted your ancestors. You want freedom, authenticity, and beauty, but not necessarily the follow-through required to keep electricity attached to those values. You can disappear into your own inner weather, quietly nursing disappointment until it starts decorating the furniture.
 
 Still, studies show not everyone should be reduced to efficiency metrics and ugly office chairs. Someone has to remind the species that beauty matters, presence matters, and ugly souls often arrive in practical shoes. That person, tragically and beautifully, is you. Congratulations. You may be a gorgeous mess, but at least the mess has coherent color grading.`,
         roast_name_zh: '忧郁艺术家',
-        tagline_zh: '你的审美无可挑剔。你的人生？一场美丽的灾难。',
-        desc_zh: `恭喜你，你是 ISFP，忧郁艺术家，一个伪装成人的完美 Pinterest 面板。我们的研究表明，你在每一个动作中都追求美和真实性，这导致你花三个小时挑选完美搭配的衣服去买个杂货，但却在这个过程中忘记交电费。
+        tagline_zh: '你的审美无可挑剔。你的人生?一场美丽的灾难。',
+        desc_zh: `恭喜你,你是 ISFP,忧郁艺术家,一个伪装成人的完美 Pinterest 面板。我们的研究表明,你在每一个动作中都追求美和真实性,这导致你花三个小时挑选完美搭配的衣服去买个杂货,但却在这个过程中忘记交电费。
 
-你是一个安静的享乐主义者，顺着当下潮流的方向漂浮。这意味着你有着难以置信的随和……直到有人要求你对未来做出哪怕一丝一毫的承诺。在那一刻，你像一只受惊的小鹿一样退缩。计划感觉像是一个牢笼，而结构是对你灵魂的冒犯。你通过你喜欢的音乐、衣服和植物来表达自己，因为实际用语言表达你的感受需要过多的结构。
+你是一个安静的享乐主义者,顺着当下潮流的方向漂浮。这意味着你有着难以置信的随和......直到有人要求你对未来做出哪怕一丝一毫的承诺。在那一刻,你像一只受惊的小鹿一样退缩。计划感觉像是一个牢笼,而结构是对你灵魂的冒犯。你通过你喜欢的音乐、衣服和植物来表达自己,因为实际用语言表达你的感受需要过多的结构。
 
-当你被误解时（这经常发生，因为你拒绝解释自己），你会退缩到你那个精心布置的角落里生闷气。你希望别人能神奇地看透你冷静的外表，读懂你翻涌的内心，当他们做不到时，你就会写一首悲伤的无题诗或者画一幅非常阴郁的水彩画。
+当你被误解时(这经常发生,因为你拒绝解释自己),你会退缩到你那个精心布置的角落里生闷气。你希望别人能神奇地看透你冷静的外表,读懂你翻涌的内心,当他们做不到时,你就会写一首悲伤的无题诗或者画一幅非常阴郁的水彩画。
 
-但老实说，如果没有你，这个世界将会丑陋且了无生趣。你带来了其他人用尽全力也无法伪造的品味、优雅和柔和的真诚。恭喜。你可能处于一片混乱之中，但你绝对把这场混乱打扮得非常漂亮。`
+但老实说,如果没有你,这个世界将会丑陋且了无生趣。你带来了其他人用尽全力也无法伪造的品味、优雅和柔和的真诚。恭喜。你可能处于一片混乱之中,但你绝对把这场混乱打扮得非常漂亮。`
       },
       ESTP: {
         code: 'ESTP',
+        keyword: 'GREMLIN',
+        keyword_zh: '小鬼',
         roast_name: 'The Adrenaline Gremlin',
         tagline: "You've broken 3 bones and have zero regrets.",
-        desc: `Congratulations, you are ESTP, the Adrenaline Gremlin, a walking impulse with excellent reflexes and a legally questionable amount of confidence. Our proprietary model identifies you as the type most likely to turn a bad idea into a memorable night and then somehow convince everyone else it was character-building. You don’t fear consequences. You simply outsource them to tomorrow.
+        desc: `Congratulations, you are ESTP, the Adrenaline Gremlin, a walking impulse with excellent reflexes and a legally questionable amount of confidence. Our proprietary model identifies you as the type most likely to turn a bad idea into a memorable night and then somehow convince everyone else it was character-building. You don't fear consequences. You simply outsource them to tomorrow.
 
 You are fast, charming, bold, and so present-focused it borders on theological. While other people are busy overthinking, you are already halfway through the experience, three drinks deep, asking whether anyone else wants to jump off something for the plot. Your ability to improvise is genuinely impressive. Unfortunately, your relationship with foresight remains deeply casual.
 
 You thrive on challenge, stimulation, and opportunities to dominate the moment. This makes you excellent in crises and terrible in boredom. If nothing exciting is happening, you may accidentally become the exciting thing, often at the expense of peace, furniture, or emotional continuity. You call it living fully. HR calls it a pattern.
 
-Still, studies show the world needs a few fearless maniacs willing to act while the rest of us are still comparing options in a spreadsheet and aging visibly. That’s you. Congratulations. You are reckless, electric, and somehow the human embodiment of a GoPro clip with no waiver form attached.`,
+Still, studies show the world needs a few fearless maniacs willing to act while the rest of us are still comparing options in a spreadsheet and aging visibly. That's you. Congratulations. You are reckless, electric, and somehow the human embodiment of a GoPro clip with no waiver form attached.`,
         roast_name_zh: '肾上腺素小鬼',
-        tagline_zh: '你断过 3 根骨头，而且零后悔。',
-        desc_zh: `恭喜你，你是 ESTP，肾上腺素小鬼。你是一罐装在破洞杯子里的红牛。我们专有的预测模型显示，你现在的存在方式就是：先跳，途中再建降落伞，如果落地时摔断了腿，你会说这本来也是个很棒的故事。
+        tagline_zh: '你断过 3 根骨头,而且零后悔。',
+        desc_zh: `恭喜你,你是 ESTP,肾上腺素小鬼。你是一罐装在破洞杯子里的红牛。我们专有的预测模型显示,你现在的存在方式就是:先跳,途中再建降落伞,如果落地时摔断了腿,你会说这本来也是个很棒的故事。
 
-你活在当下，这意味着“未来”对你来说是一个抽象的概念，是留给那些不怎么有趣的人去考虑的。你魅力四射、反应迅速，且极具说服力，这让你成为了一个出色的推销员、一个绝佳的派对同伴，以及一个绝对灾难性的长期决策者。你可以把任何人说服去做任何事，尤其是当这件事涉及到一个非常糟糕的主意时。
+你活在当下,这意味着"未来"对你来说是一个抽象的概念,是留给那些不怎么有趣的人去考虑的。你魅力四射、反应迅速,且极具说服力,这让你成为了一个出色的推销员、一个绝佳的派对同伴,以及一个绝对灾难性的长期决策者。你可以把任何人说服去做任何事,尤其是当这件事涉及到一个非常糟糕的主意时。
 
-对你来说，如果一项活动没有一点身体伤害的风险或者违反了几条法规，它就不叫活动。你把所有的深刻反思都推迟到了一个叫做“老了再说”的神话时间线上。如果有人试图和你坐下来进行一次深沉的、探索灵魂的情感对话，你会开始出汗，并寻找最近的窗户跳出去。
+对你来说,如果一项活动没有一点身体伤害的风险或者违反了几条法规,它就不叫活动。你把所有的深刻反思都推迟到了一个叫做"老了再说"的神话时间线上。如果有人试图和你坐下来进行一次深沉的、探索灵魂的情感对话,你会开始出汗,并寻找最近的窗户跳出去。
 
-然而，你是我们身边唯一能让事情真正发生的人。当你在这个房间里，世界从来不会无聊。恭喜。你是一场充满乐趣、极具破坏力的龙卷风，我们都在偷偷希望自己也能像你一样无所畏惧。`
+然而,你是我们身边唯一能让事情真正发生的人。当你在这个房间里,世界从来不会无聊。恭喜。你是一场充满乐趣、极具破坏力的龙卷风,我们都在偷偷希望自己也能像你一样无所畏惧。`
       },
       ESFP: {
         code: 'ESFP',
+        keyword: 'DIVA',
+        keyword_zh: '戏精',
         roast_name: 'The Main Character',
         tagline: "You've never entered a room without making it about you.",
-        desc: `Congratulations, you are ESFP, the Main Character, a sparkle grenade with opinions. Our algorithm confirms you possess the rare ability to make any setting more alive and less efficient the second you appear. You are charming, expressive, and built for the now. People don’t just notice you, they experience you, like weather, fireworks, or a friend who says “trust me” right before the situation becomes illegal.
+        desc: `Congratulations, you are ESFP, the Main Character, a sparkle grenade with opinions. Our algorithm confirms you possess the rare ability to make any setting more alive and less efficient the second you appear. You are charming, expressive, and built for the now. People don't just notice you, they experience you, like weather, fireworks, or a friend who says "trust me" right before the situation becomes illegal.
 
 You know how to have fun in a way that makes more restrained people feel like they were assembled in a tax office. Your energy is contagious. Your appetite for pleasure, novelty, and connection is borderline patriotic. The problem is that you can confuse visibility with intimacy and excitement with meaning. Sometimes you are not making memories. Sometimes you are just generating content for future anecdotes and calling it depth.
 
 You hate being boxed in, bored, or emotionally ignored. If life starts feeling stale, you will redecorate your identity, your hair, your weekend plans, and possibly your relationship status before anybody has processed lunch. Yet underneath the glamour and chaos, you care more than people realize. You just prefer your vulnerability accessorized.
 
-Still, research suggests every community needs one radiant attention hazard to keep morale from dying under fluorescent lighting. That’s you. Congratulations. You are dramatic, delightful, and proof that being a lot can occasionally be exactly what the room needed.`,
+Still, research suggests every community needs one radiant attention hazard to keep morale from dying under fluorescent lighting. That's you. Congratulations. You are dramatic, delightful, and proof that being a lot can occasionally be exactly what the room needed.`,
         roast_name_zh: '主角光环',
         tagline_zh: '你从没进过一个不能让你变成焦点的房间。',
-        desc_zh: `恭喜你，你是 ESFP，主角光环。一个被困在日常无聊生活中的百老汇音乐剧。我们的追踪器显示，你在走进任何房间时都会下意识地寻找聚光灯，如果找不到，你就会自己造一个。对你来说，生活不是需要被理解的，而是需要被表演的。
+        desc_zh: `恭喜你,你是 ESFP,主角光环。一个被困在日常无聊生活中的百老汇音乐剧。我们的追踪器显示,你在走进任何房间时都会下意识地寻找聚光灯,如果找不到,你就会自己造一个。对你来说,生活不是需要被理解的,而是需要被表演的。
 
-你拥有不可思议的能力，能把最微小的事件变成史诗般的传奇，辅以夸张的动作和配音。如果你去买了杯咖啡，那绝对是一场充满了近在咫尺的灾难、滑稽的互动和一个意外顿悟的冒险。你在关注中茁壮成长，如果关注减弱，你那夸张的反应能力就会启动，以确保观众再次看过来。
+你拥有不可思议的能力,能把最微小的事件变成史诗般的传奇,辅以夸张的动作和配音。如果你去买了杯咖啡,那绝对是一场充满了近在咫尺的灾难、滑稽的互动和一个意外顿悟的冒险。你在关注中茁壮成长,如果关注减弱,你那夸张的反应能力就会启动,以确保观众再次看过来。
 
-因为你太专注于外在的体验，你有时会把深刻和无聊混为一谈。如果一段关系或者一个工作度过了蜜月期并要求常规的维护，你往往就会失去兴趣，去寻找下一个能给你带来多巴胺冲击的东西。别人认为你是肤浅的，但这不公平——你只是深深地致力于不被无聊致死。
+因为你太专注于外在的体验,你有时会把深刻和无聊混为一谈。如果一段关系或者一个工作度过了蜜月期并要求常规的维护,你往往就会失去兴趣,去寻找下一个能给你带来多巴胺冲击的东西。别人认为你是肤浅的,但这不公平--你只是深深地致力于不被无聊致死。
 
-不过，生活确实因为你而变得更加明亮、更加喧闹、更加有趣。你拥有传染性的快乐，即使是你最大的黑子也不得不承认这一点。恭喜。你是派对的生命线，只要我们不用负责清理你留下的烂摊子就行。`
+不过,生活确实因为你而变得更加明亮、更加喧闹、更加有趣。你拥有传染性的快乐,即使是你最大的黑子也不得不承认这一点。恭喜。你是派对的生命线,只要我们不用负责清理你留下的烂摊子就行。`
       },
       LOWB: {
         code: 'LOWB',
+        keyword: 'FLATLINE',
+        keyword_zh: '归零',
         roast_name: 'The Absolute Zero',
         tagline: 'Congratulations. You are the human equivalent of a participation trophy.',
-        desc: `Congratulations, you are LOWB, the Absolute Zero, a statistical sinkhole so aggressively mid it bends the bell curve out of pity. According to our proprietary algorithm, your greatest contribution to society is making average people feel gifted. Without specimens like you, mediocrity would have no basement, taste would have no cautionary exhibit, and the phrase “at least I’m not that bad” would lose a full third of its utility.
+        desc: `Congratulations, you are LOWB, the Absolute Zero, a statistical sinkhole so aggressively mid it bends the bell curve out of pity. According to our proprietary algorithm, your greatest contribution to society is making average people feel gifted. Without specimens like you, mediocrity would have no basement, taste would have no cautionary exhibit, and the phrase "at least I'm not that bad" would lose a full third of its utility.
 
-LOWB is not a personality so much as an anti-aesthetic event. You are the kind of person who could wear Crocs to a job interview, call Comic Sans “clean,” and build a Spotify Wrapped entirely out of the same three songs because “they all still slap.” You don’t curate vibes. You commit misdemeanors against them. If a group project has dead weight, you are not carrying it, you are haunting it. Your fashion sense looks like a lost-and-found bin gained sentience and developed confidence for all the wrong reasons.
+LOWB is not a personality so much as an anti-aesthetic event. You are the kind of person who could wear Crocs to a job interview, call Comic Sans "clean," and build a Spotify Wrapped entirely out of the same three songs because "they all still slap." You don't curate vibes. You commit misdemeanors against them. If a group project has dead weight, you are not carrying it, you are haunting it. Your fashion sense looks like a lost-and-found bin gained sentience and developed confidence for all the wrong reasons.
 
-The scary part is not the lack of talent, taste, or discernible mission. It’s the calm. There is no tortured ambition here, no artistic struggle, no compelling defect. Just a smooth beige void where standards used to be. You are the default character on a life setting nobody consciously selected.
+The scary part is not the lack of talent, taste, or discernible mission. It's the calm. There is no tortured ambition here, no artistic struggle, no compelling defect. Just a smooth beige void where standards used to be. You are the default character on a life setting nobody consciously selected.
 
 And yet, there is one microscopic flicker of dignity left. You picked that option. You knew. Somewhere under the wreckage, self-awareness survived. Congratulations. That does not make you good, but it does make you observably less tragic than the people who are LOWB by accident.`,
         roast_name_zh: '绝对零度',
-        tagline_zh: '恭喜。你是人类相当于“参与奖”的存在。',
-        desc_zh: `恭喜。你解锁了 LOWB（绝对零度），一个完全缺乏任何可辨识的品味、技能或明显目的的隐藏结果。
+        tagline_zh: '恭喜。你是人类相当于"参与奖"的存在。',
+        desc_zh: `恭喜。你解锁了 LOWB(绝对零度),一个完全缺乏任何可辨识的品味、技能或明显目的的隐藏结果。
 
-这其实令人印象深刻。你完美地避开了所有性格的棱角，成为了一滩温热的白开水。根据我们的临床评估，你是那个让钟形曲线成为可能的统计学异常。如果没有你垫底，普通人就无法感觉自己高于平均水平。你穿着 Crocs 去面试，认为 Comic Sans 是一种不错的设计选择，你的 Spotify 年度总结里可能只有三首同样的歌在循环播放。
+这其实令人印象深刻。你完美地避开了所有性格的棱角,成为了一滩温热的白开水。根据我们的临床评估,你是那个让钟形曲线成为可能的统计学异常。如果没有你垫底,普通人就无法感觉自己高于平均水平。你穿着 Crocs 去面试,认为 Comic Sans 是一种不错的设计选择,你的 Spotify 年度总结里可能只有三首同样的歌在循环播放。
 
-你的存在是一种极其稳定的平庸。你不会冒犯任何人，因为你甚至没有足够的实质内容去构成冒犯。你对任何对话的贡献就像是在食物里加了未调味的豆腐——占据了物理空间，但没留下任何味道。
+你的存在是一种极其稳定的平庸。你不会冒犯任何人,因为你甚至没有足够的实质内容去构成冒犯。你对任何对话的贡献就像是在食物里加了未调味的豆腐--占据了物理空间,但没留下任何味道。
 
-但最令人惊奇的是，你的这种状态并不是因为缺乏努力，而是因为你纯粹、天然的本底。不过，我们必须给你一点微小的赞扬：至少你有足够的自知之明去在这个测试里选择了那个触发选项。恭喜。你平庸到了一种接近行为艺术的境界。`
+但最令人惊奇的是,你的这种状态并不是因为缺乏努力,而是因为你纯粹、天然的本底。不过,我们必须给你一点微小的赞扬:至少你有足够的自知之明去在这个测试里选择了那个触发选项。恭喜。你平庸到了一种接近行为艺术的境界。`
       },
       GLITCH: {
         code: 'GLITCH',
+        keyword: 'ERROR',
+        keyword_zh: '乱码',
         roast_name: 'The Unclassifiable Chaos Agent',
         tagline: 'The algorithm gave up on you. Congratulations?',
-        desc: `Congratulations, you are GLITCH, the Unclassifiable Chaos Agent, the result reserved for people whose answers looked less like a personality pattern and more like a raccoon sprinting across a keyboard during a solar flare. Our algorithm tried. It really did. It sorted, weighted, cross-checked, and performed several fake-scientific rituals. Then it stared into your response profile, whispered “absolutely not,” and filed for emotional workers’ comp.
+        desc: `Congratulations, you are GLITCH, the Unclassifiable Chaos Agent, the result reserved for people whose answers looked less like a personality pattern and more like a raccoon sprinting across a keyboard during a solar flare. Our algorithm tried. It really did. It sorted, weighted, cross-checked, and performed several fake-scientific rituals. Then it stared into your response profile, whispered "absolutely not," and filed for emotional workers' comp.
 
-Most people at least cohere around one flavor of dysfunction. You, apparently, prefer artisanal variety. You answered like someone who starts a five-year plan on Monday, quits by Wednesday, cries at commercials on Thursday, and spends Friday debating a stranger online about Roman concrete. Your internal system architecture is less “integrated psyche” and more “haunted coworking space.” Every axis came back muddy, contradictory, or suspiciously committed to chaos.
+Most people at least cohere around one flavor of dysfunction. You, apparently, prefer artisanal variety. You answered like someone who starts a five-year plan on Monday, quits by Wednesday, cries at commercials on Thursday, and spends Friday debating a stranger online about Roman concrete. Your internal system architecture is less "integrated psyche" and more "haunted coworking space." Every axis came back muddy, contradictory, or suspiciously committed to chaos.
 
 This does not mean you are special in the glamorous sense. It means you are hard to classify because your operating system appears to have been patched together from discarded beta versions of several stronger personalities. You may be adaptable. You may be inconsistent. You may simply enjoy lying to quizzes for sport because intimacy frightens you and trolling feels like control.
 
 Still, history belongs to a few weird specimens the categories could not hold. Congratulations. You are not readable, not stable, and not especially convenient for statistics. But at least your damage is original enough to crash the machine.`,
         roast_name_zh: '无法归类的混沌体',
-        tagline_zh: '算法对你放弃治疗了。恭喜？',
-        desc_zh: `你的测试结果触发了 GLITCH。这意味着你要么完全随机地点击了选项，要么你的人格结构看起来像是在微波炉里加热过的乱码。
+        tagline_zh: '算法对你放弃治疗了。恭喜?',
+        desc_zh: `你的测试结果触发了 GLITCH。这意味着你要么完全随机地点击了选项,要么你的人格结构看起来像是在微波炉里加热过的乱码。
 
-在每个维度上，你都正好停留在一种令人崩溃的模糊地带。你不是内向也不是外向；你只是根据房间里的 Wi-Fi 信号强度来决定要不要说话。你不是在思考也不是在感受；你只是把你的内部决策外包给了某种随机数生成器。
+在每个维度上,你都正好停留在一种令人崩溃的模糊地带。你不是内向也不是外向;你只是根据房间里的 Wi-Fi 信号强度来决定要不要说话。你不是在思考也不是在感受;你只是把你的内部决策外包给了某种随机数生成器。
 
-大多数人至少有一种主导的缺陷，但你？你是一场由矛盾组成的自助餐。我们的算法试图对你进行分类，但最终它只是叹了口气并崩溃了。你是一道行走的安全验证码，而且显然你没通过。
+大多数人至少有一种主导的缺陷,但你?你是一场由矛盾组成的自助餐。我们的算法试图对你进行分类,但最终它只是叹了口气并崩溃了。你是一道行走的安全验证码,而且显然你没通过。
 
-恭喜你打破了测试。这不是因为你有什么深刻的复杂性，而是因为你的回答模式连最基本的因果关系都不遵循。带着你这份无法被定义的混沌，继续去祸害下一个人格测试吧。`
+恭喜你打破了测试。这不是因为你有什么深刻的复杂性,而是因为你的回答模式连最基本的因果关系都不遵循。带着你这份无法被定义的混沌,继续去祸害下一个人格测试吧。`
       }
     };
 
@@ -1387,15 +1465,19 @@ Still, history belongs to a few weird specimens the categories could not hold. C
     function renderQuestions() {
       const list = document.getElementById('questionList');
       list.innerHTML = '';
-      app.shuffledQuestions.forEach((q, index) => {
+      const visibleQs = getVisibleQuestions();
+      visibleQs.forEach((q, index) => {
         const value = app.answers[q.id];
         const isAnswered = value !== undefined;
         const text = currentLang === 'zh' && q.text_zh ? q.text_zh : q.text;
-        
+
+        const metaLabel = q.special ? t('hiddenLabel') : `${t('axisLabel')} ${q.dim}`;
+        const qLabel = currentLang === 'zh' ? `${t('questionLabel')} ${index + 1} 题` : `${t('questionLabel')} ${index + 1}`;
         const html = `
           <div class="question" id="q-${q.id}">
             <div class="question-meta">
-              <span class="badge">Question ${index + 1}</span>
+              <span class="badge">${qLabel}</span>
+              <span style="font-size:11px;color:var(--muted)">${metaLabel}</span>
               ${isAnswered ? '<span style="color:var(--accent-strong)">✔</span>' : ''}
             </div>
             <div class="question-title">${text}</div>
@@ -1404,8 +1486,8 @@ Still, history belongs to a few weird specimens the categories could not hold. C
                 const label = currentLang === 'zh' && opt.label_zh ? opt.label_zh : opt.label;
                 return `
                 <label class="option" ${value === opt.value ? 'style="border-color:var(--accent-strong); background:#f8fcf9"' : ''}>
-                  <input type="radio" name="${q.id}" value="${opt.value}" 
-                    ${value === opt.value ? 'checked' : ''} 
+                  <input type="radio" name="${q.id}" value="${opt.value}"
+                    ${value === opt.value ? 'checked' : ''}
                     onchange="handleAnswer('${q.id}', ${opt.value})">
                   <span>${label}</span>
                 </label>
@@ -1419,6 +1501,25 @@ Still, history belongs to a few weird specimens the categories could not hold. C
       updateProgress();
     }
 
+    function handleAnswer(id, value) {
+      app.answers[id] = value;
+      if (id === SPECIAL_QUESTIONS.lowbGate.id) renderQuestions();
+      updateProgress();
+      const el = document.getElementById('q-' + id);
+      if (el) {
+        el.querySelectorAll('.option').forEach(opt => {
+          const radio = opt.querySelector('input');
+          if (parseInt(radio.value) === value) {
+            opt.style.borderColor = 'var(--accent-strong)';
+            opt.style.background = '#f8fcf9';
+          } else {
+            opt.style.borderColor = '';
+            opt.style.background = '';
+          }
+        });
+      }
+    }
+
     function updateProgress() {
       const visibleQuestions = getVisibleQuestions();
       const total = visibleQuestions.length;
@@ -1428,9 +1529,7 @@ Still, history belongs to a few weird specimens the categories could not hold. C
       progressText.textContent = `${done} / ${total}`;
       const complete = done === total && total > 0;
       submitBtn.disabled = !complete;
-      testHint.textContent = complete
-        ? 'All answered. Hand your ego to the machine.'
-        : 'Answer everything. If society has to tolerate your personality, you can tolerate this quiz.';
+      testHint.textContent = complete ? t('testHintDone') : t('testHint');
     }
 
     function getLowbTriggered() {
@@ -1475,23 +1574,28 @@ Still, history belongs to a few weird specimens the categories could not hold. C
 
       let finalType = TYPE_LIBRARY[letters];
       let modeKicker = 'YOUR PRIMARY DAMAGE TYPE';
-      let badge = `Confidence ${overallConfidence}%`;
-      let sub = `You landed on ${letters} with four suspiciously consistent axes. That is either insight or an advanced form of self-branding.`;
+      const confLabel = t('confidence');
+      let badge = `${confLabel} ${overallConfidence}%`;
+      let sub = currentLang === 'zh'
+        ? `你落在了 ${letters}，四个轴线都可疑地一致。这要么是洞察力，要么是一种高级形式的自我品牌营销。`
+        : `You landed on ${letters} with four suspiciously consistent axes. That is either insight or an advanced form of self-branding.`;
       let special = false;
 
       if (lowbTriggered) {
         finalType = TYPE_LIBRARY.LOWB;
         modeKicker = 'HIDDEN TYPE ACTIVATED';
-        badge = 'Confidence 100%';
-        sub = 'You knowingly selected the lowb pathway. The system respects honesty almost as much as it hates your taste.';
+        badge = `${confLabel} 100%`;
+        sub = currentLang === 'zh'
+          ? '你有意识地选择了 LOWB 路线。系统尊重你的诚实，几乎和它讨厌你的品味一样多。'
+          : 'You knowingly selected the lowb pathway. The system respects honesty almost as much as it hates your taste.';
         special = true;
-      } else if (allTied || overallConfidence < 60 || !TYPE_LIBRARY[letters]) {
+      } else if (allTied || (overallConfidence < 15 && !lowbTriggered) || !TYPE_LIBRARY[letters]) {
         finalType = TYPE_LIBRARY.GLITCH;
         modeKicker = 'ALGORITHM FAILURE MODE';
-        badge = allTied ? 'Confidence 0%' : `Confidence ${overallConfidence}%`;
+        badge = allTied ? `${confLabel} 0%` : `${confLabel} ${overallConfidence}%`;
         sub = allTied
-          ? 'All four dimensions hit perfect ambiguity. Your psyche arrived as buffering.'
-          : 'Your answers were too muddy for a clean type, which is an impressive form of internal vandalism.';
+          ? (currentLang === 'zh' ? '四个维度全部分数持平。你的心理画像还在缓冲中。' : 'All four dimensions hit perfect ambiguity. Your psyche arrived as buffering.')
+          : (currentLang === 'zh' ? '你的回答太过浑浊无法得出清晰类型，这是一种令人印象深刻的内部破坏。' : 'Your answers were too muddy for a clean type, which is an impressive form of internal vandalism.');
         special = true;
       }
 
@@ -1506,7 +1610,7 @@ Still, history belongs to a few weird specimens the categories could not hold. C
         const leansSecond = score > 16;
         const picked = leansSecond ? meta.second : meta.first;
         const metaName = currentLang === 'zh' ? `${meta.low_zh} / ${meta.high_zh}` : meta.name;
-        
+
         let explanation;
         if (currentLang === 'zh') {
           explanation = leansSecond ? DIM_EXPLANATIONS[dim].high_zh : DIM_EXPLANATIONS[dim].low_zh;
@@ -1551,32 +1655,90 @@ Still, history belongs to a few weird specimens the categories could not hold. C
       const rTagline = currentLang === 'zh' && type.tagline_zh ? type.tagline_zh : type.tagline;
       const rDesc = currentLang === 'zh' && type.desc_zh ? type.desc_zh : type.desc;
 
-      let badgeStr = result.badge;
-      if (currentLang === 'zh') badgeStr = badgeStr.replace('Confidence', '置信度');
-      
-      let subStr = result.sub;
-      if (currentLang === 'zh' && result.special) {
-        subStr = result.modeKicker === 'HIDDEN TRIGGER' 
-          ? '你触发了陷阱题。你的主要人格被覆盖为：灾难。'
-          : (result.badge.includes('0%') ? '四个维度全部分数持平。你的心理画像还在缓冲中。' : '你的回答太过浑浊无法得出清晰类型，这是一种令人印象深刻的内部破坏。');
-      }
+      const badgeStr = result.badge;
+      const subStr = result.sub;
 
-      document.getElementById('resultModeKicker').textContent = result.modeKicker === 'ALGORITHM FAILURE MODE' && currentLang === 'zh' ? '算法故障模式' : (result.modeKicker === 'HIDDEN TRIGGER' && currentLang === 'zh' ? '隐藏触发器' : result.modeKicker);
-      document.getElementById('resultTypeName').textContent = `${type.code} · ${rName}`;
+      // Bilingual kicker
+      const kickerMap = {
+        'YOUR PRIMARY DAMAGE TYPE': t('resultKicker'),
+        'HIDDEN TYPE ACTIVATED': currentLang === 'zh' ? '隐藏类型已激活' : 'HIDDEN TYPE ACTIVATED',
+        'ALGORITHM FAILURE MODE': currentLang === 'zh' ? '算法故障模式' : 'ALGORITHM FAILURE MODE'
+      };
+      document.getElementById('resultModeKicker').textContent = kickerMap[result.modeKicker] || result.modeKicker;
+      document.getElementById('resultTypeName').textContent = type.keyword ? (currentLang === 'zh' && type.keyword_zh ? type.keyword_zh : type.keyword) : type.code;
+      document.getElementById('resultTypeSub').textContent = `${type.code} · ${rName}`;
       document.getElementById('matchBadge').textContent = badgeStr;
-      document.getElementById('resultTypeSub').textContent = rTagline;
+      // Remove previous tagline div if exists, then add fresh one
+      const oldTagline = document.getElementById('resultTagline');
+      if (oldTagline) oldTagline.remove();
+      document.getElementById('matchBadge').insertAdjacentHTML('afterend', `<div id="resultTagline" class="type-subname" style="margin-top:10px;color:var(--muted);font-size:14px;line-height:1.8;">${rTagline}</div>`);
       document.getElementById('resultDesc').textContent = rDesc;
       document.getElementById('posterCaption').textContent = subStr || t('posterSub');
-      
+
       document.getElementById('funNote').textContent = result.special
         ? t('specialNote')
         : t('normalNote');
-        
+
       document.getElementById('fullDisclaimer').textContent = getDisclaimer();
 
       renderPoster(type);
       renderDimList(result);
       showScreen('result');
+    }
+
+    function getShareText() {
+      const typeName = document.getElementById('resultTypeName').textContent;
+      const tagline = document.getElementById('resultTypeSub').textContent;
+      const url = window.location.href;
+      return currentLang === 'zh'
+        ? `我的 RTI 结果是 ${typeName}！“${tagline}” 🔥 来被烤一下：${url}`
+        : `My RTI result: ${typeName}! "${tagline}" 🔥 Get roasted: ${url}`;
+    }
+
+    function shareToTwitter() {
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText())}`, '_blank');
+    }
+    function shareToFacebook() {
+      window.open(`https://www.facebook.com/sharer/sharer.php?quote=${encodeURIComponent(getShareText())}&u=${encodeURIComponent(window.location.href)}`, '_blank');
+    }
+    function shareToReddit() {
+      window.open(`https://reddit.com/submit?title=${encodeURIComponent(getShareText())}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+    }
+    function shareToWeibo() {
+      window.open(`https://service.weibo.com/share/share.php?title=${encodeURIComponent(getShareText())}&url=${encodeURIComponent(window.location.href)}`, '_blank');
+    }
+    function shareToWechat() {
+      alert(currentLang === 'zh' ? '请复制链接后在微信中发送给朋友!' : 'Copy the link and share it in WeChat!');
+      copyShareText();
+    }
+    function shareToTelegram() {
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(getShareText())}`, '_blank');
+    }
+    function shareToWhatsapp() {
+      window.open(`https://wa.me/?text=${encodeURIComponent(getShareText())}`, '_blank');
+    }
+    function copyShareText() {
+      navigator.clipboard.writeText(getShareText()).then(() => {
+        const btn = document.getElementById('shareCopy');
+        const orig = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => btn.textContent = orig, 2000);
+      });
+    }
+
+
+    function shareToLinkedin() {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank');
+    }
+    function shareToTiktok() {
+      copyShareText();
+      window.open('https://www.tiktok.com/upload', '_blank');
+    }
+    function shareToLine() {
+      window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(getShareText())}`, '_blank');
+    }
+    function shareToThreads() {
+      window.open(`https://www.threads.net/intent/post?text=${encodeURIComponent(getShareText())}`, '_blank');
     }
 
     function startTest() {
@@ -1597,7 +1759,7 @@ Still, history belongs to a few weird specimens the categories could not hold. C
     document.getElementById('submitBtn').addEventListener('click', renderResult);
     document.getElementById('restartBtn').addEventListener('click', startTest);
     document.getElementById('toTopBtn').addEventListener('click', () => showScreen('intro'));
-    
+
     // Initialize UI language
     setLang(currentLang);
   </script>
